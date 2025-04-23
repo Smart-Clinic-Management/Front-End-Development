@@ -1,0 +1,41 @@
+<h5 class="card-title">Basic Datatable</h5>
+<div class="table-responsive">
+  <table
+    id="zero_config"
+    class="table table-striped table-bordered"
+  >
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Specialization</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td><img src="https://plus.unsplash.com/premium_photo-1661478177049-f8569388e0c5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" width="90"></td>
+        <td>Amr</td>
+        <td>Dentist</td>
+        <td>
+          <a [routerLink]="['/dashboard/doctors/details']" class="btn btn-primary">details</a>
+          <a [routerLink]="['/dashboard/doctors/edit']" class="btn btn-success ms-1">edit</a>
+          <a class="btn btn-danger ms-1">delete</a>
+        </td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><img src="https://images.unsplash.com/photo-1659353889416-fab1265eaa7f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" width="90"></td>
+        <td>Ali</td>
+        <td>Dentist</td>
+        <td>
+          <a [routerLink]="['/dashboard/doctors/details']" class="btn btn-primary">details</a>
+          <a [routerLink]="['/dashboard/doctors/edit']" class="btn btn-success ms-1">edit</a>
+          <a class="btn btn-danger ms-1">delete</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

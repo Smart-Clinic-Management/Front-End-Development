@@ -1,0 +1,129 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "Tabiby-front": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "dist/tabiby-front",
+            "index": "src/index.html",
+            "browser": "src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "tsconfig.app.json",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "public"
+              },
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.css"
+            ],
+            "scripts": [
+              "src/assets/dashboard/js/jquery.min.js",
+              "src/assets/dashboard/js/bootstrap.bundle.min.js",
+              "src/assets/dashboard/js/perfect-scrollbar.jquery.min.js",
+              "src/assets/dashboard/js/sparkline.js",
+              "src/assets/dashboard/js/waves.js",
+              "src/assets/dashboard/js/sidebarmenu.js",
+              "src/assets/dashboard/js/custom.min.js",
+              "src/assets/dashboard/js/datatables.min.js",
+
+              "src/assets/website/js/vendor/modernizr-3.5.0.min.js",
+              "src/assets/website/js/bootstrap.min.js",
+              "src/assets/website/js/owl.carousel.min.js",
+              "src/assets/website/js/isotope.pkgd.min.js",
+              "src/assets/website/js/ajax-form.js",
+              "src/assets/website/js/waypoints.min.js",
+              "src/assets/website/js/jquery.counterup.min.js",
+              "src/assets/website/js/imagesloaded.pkgd.min.js",
+              "src/assets/website/js/scrollIt.js",
+              "src/assets/website/js/jquery.scrollUp.min.js",
+              "src/assets/website/js/wow.min.js",
+              "src/assets/website/js/nice-select.min.js",
+              "src/assets/website/js/jquery.slicknav.min.js",
+              "src/assets/website/js/jquery.magnific-popup.min.js",
+              "src/assets/website/js/plugins.js",
+              "src/assets/website/js/gijgo.min.js",
+              "src/assets/website/js/contact.js",
+              "src/assets/website/js/jquery.ajaxchimp.min.js",
+              "src/assets/website/js/jquery.form.js",
+              "src/assets/website/js/jquery.validate.min.js",
+              "src/assets/website/js/mail-script.js",
+              "src/assets/website/js/main.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "Tabiby-front:build:production"
+            },
+            "development": {
+              "buildTarget": "Tabiby-front:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "tsconfig.spec.json",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "public"
+              }
+            ],
+            "styles": [
+              "src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    }
+  }
+}
