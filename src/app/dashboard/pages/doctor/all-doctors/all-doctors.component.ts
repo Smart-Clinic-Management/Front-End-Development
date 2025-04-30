@@ -1,12 +1,48 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { DoctorService } from '../../../../_services/doctor.service';
+import { IDoctorListItem } from '../../../../_interfaces/idoctor-list-item';
 
 @Component({
   selector: 'app-all-doctors',
+  standalone: true,
   imports: [RouterModule],
   templateUrl: './all-doctors.component.html',
   styleUrl: './all-doctors.component.css'
 })
-export class AllDoctorsComponent {
+export class AllDoctorsComponent implements OnInit{
+  doctors: IDoctorListItem[] = [];
+  doctorService = inject(DoctorService);
 
+  constructor() { }
+
+  ngOnInit(): void {
+    this.loadDoctors();
+  }
+
+  loadDoctors() {
+    this.doctorService.getAllDoctors().subscribe(
+      (data) => {
+        this.doctors = data?.data ?? [];
+        console.log('Doctors:', this.doctors);
+      },
+      (error) => {
+        console.error('Error fetching doctors:', error);
+      }
+    );
+  }
+
+  // deleteDoctor(id: string) {
+  //   if (confirm('Are you sure ?')) {
+  //     this.doctorService.deleteDoctor(id).subscribe(
+  //       (response) => {
+  //         console.log('Doctor deleted successfully', response);
+  //         this.loadDoctors();
+  //       },
+  //       (error) => {
+  //         console.error('Error deleting doctor:', error);
+  //       }
+  //     );
+  //   }
+  // }
 }

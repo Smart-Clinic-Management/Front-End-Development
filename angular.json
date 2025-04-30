@@ -38,30 +38,7 @@
               "src/assets/dashboard/js/waves.js",
               "src/assets/dashboard/js/sidebarmenu.js",
               "src/assets/dashboard/js/custom.min.js",
-              "src/assets/dashboard/js/datatables.min.js",
-
-              "src/assets/website/js/vendor/modernizr-3.5.0.min.js",
-              "src/assets/website/js/bootstrap.min.js",
-              "src/assets/website/js/owl.carousel.min.js",
-              "src/assets/website/js/isotope.pkgd.min.js",
-              "src/assets/website/js/ajax-form.js",
-              "src/assets/website/js/waypoints.min.js",
-              "src/assets/website/js/jquery.counterup.min.js",
-              "src/assets/website/js/imagesloaded.pkgd.min.js",
-              "src/assets/website/js/scrollIt.js",
-              "src/assets/website/js/jquery.scrollUp.min.js",
-              "src/assets/website/js/wow.min.js",
-              "src/assets/website/js/nice-select.min.js",
-              "src/assets/website/js/jquery.slicknav.min.js",
-              "src/assets/website/js/jquery.magnific-popup.min.js",
-              "src/assets/website/js/plugins.js",
-              "src/assets/website/js/gijgo.min.js",
-              "src/assets/website/js/contact.js",
-              "src/assets/website/js/jquery.ajaxchimp.min.js",
-              "src/assets/website/js/jquery.form.js",
-              "src/assets/website/js/jquery.validate.min.js",
-              "src/assets/website/js/mail-script.js",
-              "src/assets/website/js/main.js"
+              "src/assets/dashboard/js/datatables.min.js"
             ]
           },
           "configurations": {

@@ -1,11 +1,13 @@
-
-  <div class="single_expert mb-40">
-      <div class="expert_thumb">
-          <img src="assets/website/img/experts/1.png" alt="">
-      </div>
-      <div class="experts_name text-center">
-          <h3>Mirazul Alom</h3>
-          <span>Neurologist</span>
-      </div>
+<div class="single_expert mb-40">
+  <div class="expert_thumb">
+    <img [src]="doctor.image" alt="Doctor Image">
   </div>
-
+  <div class="experts_name text-center">
+    <h3>{{ doctor.firstName }} {{ doctor.lastName }}</h3>
+    <ul>
+      @for (specialization of doctor.specializations; track $index) {
+        <li>{{ specialization }}</li>
+      }
+    </ul>
+  </div>
+</div>

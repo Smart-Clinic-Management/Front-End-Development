@@ -1,0 +1,36 @@
+<h5 class="card-title">Specialization Details</h5>
+@if(specializationDetails){
+<div class="table-responsive">
+  <table id="zero_config" class="table table-bordered">
+    <tbody>
+      <tr>
+        <th>Name</th>
+        <td>{{ specializationDetails?.name }}</td>
+      </tr>
+      <tr>
+        <th>Image</th>
+        <td>
+          <img [src]="specializationDetails?.image" width="90" alt="Doctor Image">
+        </td>
+      </tr>
+      <tr>
+        <th>Description</th>
+        <td>{{ specializationDetails?.description }}</td>
+      </tr>
+      <tr>
+        <th>Doctors</th>
+        <td>
+          <ul>
+            <li>ali</li>
+            <li>ahmed</li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+}@else{
+  <div>
+    <p>Not Found...</p>
+  </div>
+}

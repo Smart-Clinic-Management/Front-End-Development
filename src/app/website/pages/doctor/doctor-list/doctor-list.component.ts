@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { DoctorComponent } from "../doctor/doctor.component";
+import { DoctorService } from '../../../../_services/doctor.service';
+import { IDoctorListItem } from '../../../../_interfaces/idoctor-list-item';
 
 @Component({
   selector: 'app-doctor-list',
@@ -7,6 +9,25 @@ import { DoctorComponent } from "../doctor/doctor.component";
   templateUrl: './doctor-list.component.html',
   styleUrl: './doctor-list.component.css'
 })
-export class DoctorListComponent {
+export class DoctorListComponent implements OnInit{
+  doctors: IDoctorListItem[] = [];
+  doctorService = inject(DoctorService);
 
+  constructor() { }
+
+  ngOnInit(): void {
+    this.loadDoctors();
+  }
+
+  loadDoctors() {
+    this.doctorService.getAllDoctors().subscribe(
+      (data) => {
+        this.doctors = data?.data ?? [];
+        console.log('Doctors:', this.doctors);
+      },
+      (error) => {
+        console.error('Error fetching doctors:', error);
+      }
+    );
+  }
 }
