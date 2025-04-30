@@ -1,0 +1,30 @@
+<h5 class="card-title">Patients List</h5>
+<div class="table-responsive">
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Fullname</th>
+        <th>Phone Number</th>
+        <th>Age</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (patient of patients; track patient.id) {
+        <tr>
+          <td>{{ patients.indexOf(patient) + 1 }}</td>
+          <td>{{ patient.firstName }} {{ patient.lastName }}</td>
+          <td></td>
+          <td></td>
+          <td>
+            <a class="btn btn-primary">details</a>
+            <a class="btn btn-success ms-1">Appointments</a>
+            <a class="btn btn-danger ms-1">Delete</a>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+

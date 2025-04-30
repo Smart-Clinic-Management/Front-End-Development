@@ -18,6 +18,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { UnauthorizedComponent } from './auth/unauthorized/unauthorized.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { NotfoundComponent } from './website/pages/notfound/notfound.component';
+import { AllPatientsComponent } from './dashboard/pages/patient/all-patients/all-patients.component';
 
 
 export const routes: Routes = [
@@ -46,7 +47,8 @@ export const routes: Routes = [
       { path: 'doctors/edit', component: EditDoctorComponent },
       { path: 'doctors/details/:id', component: DoctorDetailsComponent },
       { path: 'specializations', component: AllSpecializaionsComponent },
-      { path: 'specializations/details/:id', component: SpecializaionDetailsComponent }
+      { path: 'specializations/details/:id', component: SpecializaionDetailsComponent },
+      { path: 'patients', component: AllPatientsComponent }
     ]
   },
   { path: '**', component: NotfoundComponent }
