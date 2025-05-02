@@ -16,6 +16,8 @@ export class DoctordetailsComponent {
 
   doctorAppintment!:DoctorSchedual  ;
 
+  tabCurrentActiveDay:string = "" ;
+
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
@@ -23,6 +25,9 @@ export class DoctordetailsComponent {
 
       this.doctorService.GetDoctorWithAppointments(params['id']).subscribe( res => {
         this.doctorAppintment =  res.data ; console.log(res);
+        this.tabCurrentActiveDay = this.doctorAppintment.availableSchedule[0].day ;
+        console.log(this.doctorAppintment.availableSchedule[0].day);
+        
       } ) ;
       // this.doctorId = +; // + converts string to number
     });

@@ -12,6 +12,9 @@ export interface DoctorSchedual {
   availableSchedule: {
     day: string;
     isAvailable: boolean;
-    slots: any[]; // You can replace `any` with a Slot interface if known
+    slots: {
+      time: string;
+      isAvailable: boolean;
+    }[]; // You can replace `any` with a Slot interface if known
   }[];
 }

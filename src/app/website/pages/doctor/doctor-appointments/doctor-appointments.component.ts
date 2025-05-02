@@ -16,15 +16,13 @@ export class DoctorAppointmentsComponent implements OnInit {
     private AuthService: AuthService
   ) {}
 
-  doctorAppointments!: IDoctorAppointments
+  doctorAppointments!: IDoctorAppointments ;
+  isLoading:boolean = true ;
 
   ngOnInit(): void {
     this.AppointmentService.GetDoctorAppointment(this.AuthService.GetId()!).subscribe((res) => {
-      console.log(res);
+      this.isLoading =false ;
       this.doctorAppointments = res ;
-      
-      // console.log(this.doctorAppointments.data);
     });
-    // throw new Error('Method not implemented.');
   }
 }
