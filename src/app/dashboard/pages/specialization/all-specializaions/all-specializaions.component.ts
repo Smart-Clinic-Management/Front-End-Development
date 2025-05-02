@@ -30,4 +30,17 @@ export class AllSpecializaionsComponent {
       }
     );
   }
+
+  confirmDelete(id: any) {
+    if (confirm('Are you sure you want to delete this doctor?')) {
+      this.specializationService.deleteSpecialization(id).subscribe({
+        next: () => {
+          this.loadSpecializations();
+        },
+        error: (err) => {
+          console.error('Error deleting doctor:', err);
+        }
+      });
+    }
+  }
 }

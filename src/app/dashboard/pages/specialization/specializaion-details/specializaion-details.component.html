@@ -5,24 +5,27 @@
     <tbody>
       <tr>
         <th>Name</th>
-        <td>{{ specializationDetails?.name }}</td>
+        <td>{{ specializationDetails.name }}</td>
       </tr>
       <tr>
         <th>Image</th>
         <td>
-          <img [src]="specializationDetails?.image" width="90" alt="Doctor Image">
+          @if(specializationDetails.image !== null){
+            <img [src]="specializationDetails.image" width="90" alt="Doctor Image">
+          }
         </td>
       </tr>
       <tr>
         <th>Description</th>
-        <td>{{ specializationDetails?.description }}</td>
+        <td>{{ specializationDetails.description }}</td>
       </tr>
       <tr>
         <th>Doctors</th>
         <td>
           <ul>
-            <li>ali</li>
-            <li>ahmed</li>
+            @for (doctor of specializationDetails.doctors; track doctor.id) {
+              <li>{{ doctor.name }}</li>
+            }
           </ul>
         </td>
       </tr>

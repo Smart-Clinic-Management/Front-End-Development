@@ -1,0 +1,39 @@
+<form [formGroup]="specializationForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data" class="form-horizontal">
+  <div class="card-body">
+    <div *ngIf="successMsg" class="alert alert-success">{{ successMsg }}</div>
+
+    <div class="form-group row">
+      <label class="col-sm-3 text-end control-label col-form-label">Name</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" formControlName="name" placeholder="Specialization Name" />
+        <div *ngIf="submitted && f['name'].errors" class="text-danger">
+          <small *ngIf="f['name'].errors?.['required']">Name is required.</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-3 text-end control-label col-form-label">Description</label>
+      <div class="col-sm-9">
+        <textarea class="form-control" formControlName="description" placeholder="Description"></textarea>
+        <div *ngIf="submitted && f['description'].errors" class="text-danger">
+          <small *ngIf="f['description'].errors?.['required']">Description is required.</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-3 text-end control-label col-form-label">Image</label>
+      <div class="col-sm-9">
+        <input type="file" class="form-control" (change)="onFileChange($event)" />
+      </div>
+    </div>
+  </div>
+
+  <div class="border-top">
+    <div class="card-body">
+      <button type="submit" class="btn btn-primary">Add</button>
+    </div>
+  </div>
+</form>
+

@@ -27,7 +27,7 @@ export class DoctorService {
     return this.http.put(`${this.baseUrl}/Update/${id}`, formData);
   }
 
-  deleteDoctor(id: string): Observable<any> {
+  deleteDoctor(id: number): Observable<any> {
     return this.http.delete(`${this.baseUrl}/${id}`);
   }
 }

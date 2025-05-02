@@ -23,7 +23,7 @@
           <td>{{ doctor.specialization }}<td>
             <a [routerLink]="['/dashboard/doctors/details', doctor.id]" class="btn btn-primary">details</a>
             <a [routerLink]="['/dashboard/doctors/edit', doctor.id]" class="btn btn-success ms-1">edit</a>
-            <!-- <button class="btn btn-danger ms-1" (click)="deleteDoctor(doctor.id)">delete</button> -->
+            <button class="btn btn-danger ms-1" (click)="confirmDelete(doctor.id)">delete</button>
           </td>
         </tr>
       }

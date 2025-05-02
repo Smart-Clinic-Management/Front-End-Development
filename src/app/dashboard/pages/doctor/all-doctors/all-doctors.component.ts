@@ -32,17 +32,16 @@ export class AllDoctorsComponent implements OnInit{
     );
   }
 
-  // deleteDoctor(id: string) {
-  //   if (confirm('Are you sure ?')) {
-  //     this.doctorService.deleteDoctor(id).subscribe(
-  //       (response) => {
-  //         console.log('Doctor deleted successfully', response);
-  //         this.loadDoctors();
-  //       },
-  //       (error) => {
-  //         console.error('Error deleting doctor:', error);
-  //       }
-  //     );
-  //   }
-  // }
+  confirmDelete(id: number) {
+    if (confirm('Are you sure you want to delete this doctor?')) {
+      this.doctorService.deleteDoctor(id).subscribe({
+        next: () => {
+          this.loadDoctors();
+        },
+        error: (err) => {
+          console.error('Error deleting doctor:', err);
+        }
+      });
+    }
+  }
 }
