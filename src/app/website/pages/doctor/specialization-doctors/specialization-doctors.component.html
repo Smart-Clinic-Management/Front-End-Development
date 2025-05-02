@@ -1,0 +1,47 @@
+  <!-- bradcam_area_start  -->
+  <div class="bradcam_area breadcam_bg_2 bradcam_overlay">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="bradcam_text">
+                    <h3>Doctors</h3>
+                    <p><a href="index.html">Home /</a> Doctors</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- bradcam_area_end  -->
+<!-- expert_doctors_area_start -->
+<div class="expert_doctors_area doctor_page">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-12">
+          <div class="section_title text-center mb-55">
+              <h3>{{ specializationDetails.name }}</h3>
+          </div>
+      </div>
+  </div>
+      <div class="row">
+        @for (doctor of specializationDetails?.doctors; track doctor.id) {
+          <div class="col-md-6 col-lg-3">
+            <a [routerLink]="['/doctor' , doctor.id]">
+              <div class="single_expert mb-40">
+                <div class="expert_thumb">
+                  @if(doctor.image !== null){
+                    <img [src]="doctor.image" alt="Doctor Image">
+                  }@else {
+                    <img src="assets/website/img/defaultUser.png" alt="Doctor Image">
+                  }
+                </div>
+                <div class="experts_name text-center">
+                  <h3>{{ doctor.name }}</h3>
+                </div>
+              </div>
+            </a>
+          </div>
+        }
+      </div>
+  </div>
+</div>
+<!-- expert_doctors_area_end -->

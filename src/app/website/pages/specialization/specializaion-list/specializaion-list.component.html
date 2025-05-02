@@ -63,16 +63,22 @@
             <div class="row">
               @for (specialization of specializations; track specialization.id) {
                 <div class="col-xl-4 col-md-6 col-lg-4">
+                  <a [routerLink]="['/specializaion/doctors' , specialization.id]">
                     <div class="single_department">
-                        <div class="department_thumb">
-                            <img src="specialization.image" alt="">
-                        </div>
-                        <div class="department_content">
-                            <h3><a href="#">{{ specialization.name }}</a></h3>
-                            <p>{{ specialization.description }}</p>
-                            <!-- <a href="#" class="learn_more">Learn More</a> -->
-                        </div>
+                      <div class="department_thumb">
+                        @if(specialization.image !== null){
+                          <img [src]="specialization.image" alt="">
+                        }@else{
+                          <img src="assets/website/img/1464093260_med.webp" alt="">
+                        }
+                      </div>
+                      <div class="department_content">
+                          <h3><a href="#">{{ specialization.name }}</a></h3>
+                          <p>{{ specialization.description }}</p>
+                          <!-- <a href="#" class="learn_more">Learn More</a> -->
+                      </div>
                     </div>
+                  </a>
                 </div>
               }
             </div>

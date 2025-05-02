@@ -1,10 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { ISpecialization } from '../../../../_interfaces/ispecialization';
 import { SpecializationService } from '../../../../_services/specialization.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-specializaion-list',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './specializaion-list.component.html',
   styleUrl: './specializaion-list.component.css'
 })
