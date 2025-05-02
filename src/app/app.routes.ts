@@ -84,10 +84,9 @@ export const routes: Routes = [
       { path: 'specializations/edit/:id', component: EditSpecializationComponent },
       { path: 'specializations/details/:id', component: SpecializaionDetailsComponent },
       { path: 'patients', component: AllPatientsComponent }
-    ],
       { path: 'patients', component: AllPatientsComponent },
       { path: 'appointments', component: AllAppointmentsComponent }
-    ]
+    ],
   },
   { path: '**', component: NotfoundComponent },
 ];
