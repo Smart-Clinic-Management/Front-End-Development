@@ -1,78 +1,159 @@
 <header>
-  <div class="header-area ">
-      <div class="header-top_area">
-          <div class="container">
-              <div class="row">
-                  <div class="col-xl-6 col-md-6 ">
-                      <div class="social_media_links">
-                          <a>
-                              <i class="fa fa-linkedin"></i>
-                          </a>
-                          <a>
-                              <i class="fa fa-facebook"></i>
-                          </a>
-                          <a>
-                              <i class="fa fa-google-plus"></i>
-                          </a>
-                      </div>
-                  </div>
-                  <div class="col-xl-6 col-md-6">
-                      <div class="short_contact_list">
-                          <ul>
-                              <li><a> <i class="fa fa-envelope"></i> <span class="__cf_email__" data-cfemail="3950575f56795d565a545c5d175a5654">[email&#160;protected]</span></a></li>
-                              <li><a> <i class="fa fa-phone"></i> 160160</a></li>
-                          </ul>
-                      </div>
-                  </div>
-              </div>
+  <div class="header-area">
+    <div class="header-top_area">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-6 col-md-6">
+            <div class="social_media_links">
+              <a>
+                <i class="fa fa-linkedin"></i>
+              </a>
+              <a>
+                <i class="fa fa-facebook"></i>
+              </a>
+              <a>
+                <i class="fa fa-google-plus"></i>
+              </a>
+            </div>
           </div>
+          <div class="col-xl-6 col-md-6">
+            <div class="short_contact_list">
+              <ul>
+                <li>
+                  <a>
+                    <i class="fa fa-envelope"></i>
+                    <span
+                      class="__cf_email__"
+                      data-cfemail="3950575f56795d565a545c5d175a5654"
+                      >[email&#160;protected]</span
+                    ></a
+                  >
+                </li>
+                <li>
+                  <a> <i class="fa fa-phone"></i> 160160</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
-      <div id="sticky-header" class="main-header-area">
-          <div class="container">
-              <div class="row align-items-center">
-                  <div class="col-xl-3 col-lg-2">
-                      <div class="logo">
-                          <a [routerLink]="['/']">
-                              <!-- <img src="assets/website/img/logo.png" alt=""> -->
-                          </a>
-                      </div>
-                  </div>
-                  <div class="col-xl-6 col-lg-7">
-                      <div class="main-menu  d-none d-lg-block">
-                          <nav>
-                              <ul id="navigation">
-                                  <li><a class="active" [routerLink]="['/']">home</a></li>
-                                  <li><a [routerLink]="['/specializaions']">Specializations</a></li>
-                                  <!-- <li><a>blog <i class="ti-angle-down"></i></a>
+    </div>
+    <div id="sticky-header" class="main-header-area">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-xl-2 col-lg-2">
+            <div class="logo">
+              <a [routerLink]="['/']">
+                <img src="assets/website/img/logo.png" alt="" />
+              </a>
+            </div>
+          </div>
+          <div class="col-xl-5 col-lg-6">
+            <div class="main-menu d-none d-lg-block">
+              <nav>
+                <ul id="navigation">
+                  <li><a class="active" [routerLink]="['/']">home</a></li>
+                  <li>
+                    <a [routerLink]="['/specializaions']">Specializations</a>
+                  </li>
+                  <!-- <li><a>blog <i class="ti-angle-down"></i></a>
                                       <ul class="submenu">
                                           <li><a>blog</a></li>
                                           <li><a>single-blog</a></li>
                                       </ul>
                                   </li> -->
-                                  <!-- <li><a>pages <i class="ti-angle-down"></i></a>
+                  <!-- <li><a>pages <i class="ti-angle-down"></i></a>
                                       <ul class="submenu">
                                           <li><a>elements</a></li>
                                           <li><a>about</a></li>
                                       </ul>
                                   </li> -->
-                                  <li><a [routerLink]="['/doctors']">Doctors</a></li>
-                                  <li><a>Contact</a></li>
-                              </ul>
-                          </nav>
-                      </div>
-                  </div>
-                  <div class="col-xl-3 col-lg-3 d-none d-lg-block">
-                      <div class="Appointment">
-                          <div class="book_btn d-none d-lg-block">
-                              <a class="popup-with-form" href="#test-form">Make an Appointment</a>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="col-12">
-                      <div class="mobile_menu d-block d-lg-none"></div>
-                  </div>
-              </div>
+                  <li><a [routerLink]="['/doctors']">Doctors</a></li>
+                  <li><a>Contact</a></li>
+                </ul>
+              </nav>
+            </div>
           </div>
+          <div class="col-xl-4 col-lg-4 d-none d-lg-block">
+            <div class="Appointment">
+              <div class="book_btn d-none d-lg-block">
+                @if (isLoggedIn) {
+                <div class="d-flex align-items-center">
+                  <div class="w-100">
+                    <a class="popup-with-form" href="#test-form"
+                      >Make an Appointment</a
+                    >
+                  </div>
+                  <div class="dropdown" style="padding-left: 10px">
+                    <button
+                      class="btn btn-secondary dropdown-toggle"
+                      style="background-color: transparent"
+                      type="button"
+                      id="dropdownMenuButton1"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      <img
+                        [src]="ImgUrl"
+                        style="
+                          width: 50px;
+                          height: 50px;
+                          border-radius: 50%;
+                          object-fit: cover;
+                        "
+                        alt=""
+                      />
+                      <!-- Dropdown button -->
+                    </button>
+                    <ul
+                      class="dropdown-menu" 
+                      style="padding: 10px 5px; margin: 0"
+                      aria-labelledby="dropdownMenuButton1"
+                    >
+                      <p style="margin: 0; text-align: center;padding: 15px;">
+                        {{UserEmail}}
+                      </p>
+                      <hr />
+                      <li>
+                        <a href="#" class="nav-dropdownLink">My Profile </a>
+                      </li> 
+                      <li>
+                        <a routerLink="/patientAppointments" class="nav-dropdownLink"> My Appointments </a>
+                      </li>
+                      <hr>
+                      <li class="d-flex justify-content-center">
+                        <button
+                          style="
+                            color: #fff;
+                            background-color: red;
+                            width: 100%;
+                            text-align: center;
+                            padding: 5px;
+                            outline: none;
+                            border: none;
+                            margin-top: 5px;
+                            cursor: pointer;
+                          "
+                          (click)="Logout()"
+                        >
+                          Logout
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                }@else {
+                <a class="popup-with-form" routerLink="/login">Login</a>
+                }
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="mobile_menu d-block d-lg-none"></div>
+          </div>
+        </div>
       </div>
+    </div>
   </div>
 </header>

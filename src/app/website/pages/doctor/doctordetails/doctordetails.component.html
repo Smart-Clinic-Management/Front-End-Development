@@ -1,0 +1,91 @@
+<div style="margin: 5rem 2rem" class="container-fluid">
+  <div class="shadow-lg">
+    <div class="row g-0 align-items-center">
+      <div class="col-md-4">
+        <img
+          [src]="doctorAppintment.image || 'assets/docImg.png'" 
+          class="img-fluid rounded-start h-100 w-100 object-fit-cover"
+          alt="Doctor Image"
+        />
+      </div>
+
+      <div class="col-md-4">
+        <div class="card-body">
+          <h4 class="card-title" style="color: blue; font-size: 2rem;">
+            DR.{{ doctorAppintment.firstName }} {{ doctorAppintment.lastName }}
+          </h4>
+          <p class="text-muted mb-1">{{ doctorAppintment.specialization }}</p>
+          <p *ngIf="doctorAppintment.description" class="card-text">{{ doctorAppintment.description }}</p>
+
+          <ul class="list-group list-group-flush mb-3">
+            <li class="list-group-item">
+              <strong>Email:</strong> {{ doctorAppintment.userEmail }}
+            </li>
+            <li *ngIf="doctorAppintment.userPhoneNumber" class="list-group-item">
+              <strong>Phone:</strong> {{ doctorAppintment.userPhoneNumber }}
+            </li>
+            <li class="list-group-item">
+              <strong>Address:</strong> Nasr City, Cairo, Egypt
+            </li>
+            <li class="list-group-item">
+              <strong>Age:</strong> {{ doctorAppintment.age }}
+            </li>
+            <li class="list-group-item">
+              <strong>Waiting Time:</strong>
+              {{ doctorAppintment.waitingTime }} mins
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div>
+          <h6 style="font-size: 1.2rem; padding: 1rem" class="py-3 px-2">
+            Available Schedule:
+          </h6>
+          <ul class="d-flex">
+            <li
+              *ngFor="let day of doctorAppintment.availableSchedule"
+              class="w-100"
+            >
+              @if ( day.isAvailable ) {
+              <div style="background: lightblue; color: #000; padding: 1rem">
+                {{ day.day }}
+              </div>
+              } @else {
+              <div style="background: gray; color: #fff; padding: 1rem">
+                {{ day.day }}
+              </div>
+              }
+
+              <!-- {{ day.isAvailable  }} -->
+              @if ( day.isAvailable ) {
+              <span
+                class="badge bg-{{ day.isAvailable ? 'success' : 'secondary' }}"
+              >
+                <li
+                  *ngFor="let slot of day.slots"
+                  [ngClass]="slot.isAvailable"
+                  style="padding: 1rem"
+                >
+                  @if (slot.isAvailable) {
+                  <span class=""> 🕒 {{ slot.time }} </span>
+                  }@else {
+                  <span class="text-second"> 🕒 {{ slot.time }} </span>
+                }
+                </li>
+              </span>
+
+              } @else {
+              <div style="height: 100% ;background-color: lightgray;" class="d-flex justify-content-center align-items-center">
+                <span>
+                    Not Available
+                </span>
+            </div>
+              }
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

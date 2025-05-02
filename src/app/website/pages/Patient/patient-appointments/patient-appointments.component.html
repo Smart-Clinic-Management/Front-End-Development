@@ -1,0 +1,40 @@
+<div style="margin: 5rem auto">
+  <div class="container">
+    <h2>My Appointments</h2>
+
+    <table class="table table-bordered table-hover mt-3">
+      <thead class="table-light">
+        <tr>
+          <th>#</th>
+          <th>Doctor Name</th>
+          <th>Date</th>
+          <th>Start Time</th>
+          <th>End Time</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let appt of appointments?.data; let i = index">
+          <td>{{ i + 1 }}</td> 
+          <td>{{ appt.doctorFullName }}</td>
+          <td>{{ appt.appointmentDate }}</td>
+          <td>{{ appt.startTime }}</td>
+          <td>{{ appt.endTime }}</td>
+          <td>
+            <span
+              class="badge bg-warning text-dark"
+              *ngIf="appt.status === 'Pending'"
+              >{{ appt.status }}</span
+            >
+            <span class="badge bg-success" *ngIf="appt.status === 'Approved'">{{
+              appt.status
+            }}</span>
+            <span class="badge bg-danger" *ngIf="appt.status === 'Rejected'">{{
+              appt.status
+            }}</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

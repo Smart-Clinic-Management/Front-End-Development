@@ -19,6 +19,8 @@ import { UnauthorizedComponent } from './auth/unauthorized/unauthorized.componen
 import { RegisterComponent } from './auth/register/register.component';
 import { NotfoundComponent } from './website/pages/notfound/notfound.component';
 import { AllPatientsComponent } from './dashboard/pages/patient/all-patients/all-patients.component';
+import { DoctordetailsComponent } from './website/pages/doctor/doctordetails/doctordetails.component';
+import { PatientAppointmentsComponent } from './website/pages/Patient/patient-appointments/patient-appointments.component';
 
 
 export const routes: Routes = [
@@ -28,9 +30,12 @@ export const routes: Routes = [
     children: [
       { path: '', component: WebsiteHomeComponent },
       { path: 'doctors', component: DoctorListComponent },
+      { path: 'doctor/:id', component: DoctordetailsComponent }, 
       { path: 'specializaions', component: SpecializaionListComponent },
       { path: 'doctorProfile', component: DoctorProfileComponent },
       { path: 'patientProfile', component: PatientProfileComponent },
+      { path: 'patientAppointments', component: PatientAppointmentsComponent }, 
+
     ]
   },
   { path: 'login', component: LoginComponent },

@@ -2,10 +2,11 @@ import { Component, OnInit, inject } from '@angular/core';
 import { DoctorComponent } from "../doctor/doctor.component";
 import { DoctorService } from '../../../../_services/doctor.service';
 import { IDoctorListItem } from '../../../../_interfaces/idoctor-list-item';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-doctor-list',
-  imports: [DoctorComponent],
+  imports: [DoctorComponent ,RouterLink],
   templateUrl: './doctor-list.component.html',
   styleUrl: './doctor-list.component.css'
 })

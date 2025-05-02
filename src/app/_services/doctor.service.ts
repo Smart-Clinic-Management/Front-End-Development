@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IDoctorListItem } from '../_interfaces/idoctor-list-item';
 import { IDoctorDetails } from '../_interfaces/idoctor-details';
+import { DoctorAppointments } from '../_interfaces/DoctorAppointments';
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +26,9 @@ export class DoctorService {
 
   deleteDoctor(id: string): Observable<any> {
     return this.http.delete(`${this.baseUrl}/${id}`);
+  }
+
+  GetDoctorWithAppointments(doctorId:number){
+    return this.http.get<{ data: DoctorAppointments}>(`${this.baseUrl}/schedule/?id=${doctorId}`);
   }
 }
