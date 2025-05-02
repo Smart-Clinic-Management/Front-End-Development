@@ -3,5 +3,5 @@ export interface IDoctorListItem {
   firstName: string;
   lastName: string;
   image: string | null;
-  specializations: string[];
+  specialization: string;
 }

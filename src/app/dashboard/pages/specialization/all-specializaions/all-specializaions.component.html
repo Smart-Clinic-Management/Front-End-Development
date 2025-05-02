@@ -15,14 +15,16 @@
         <tr>
           <td>{{ specializations.indexOf(specialization) + 1 }}</td>
           <td>
-            <img [src]="specialization.image" alt="specialization image" width="90" />
+            @if(specialization.image !== null){
+              <img [src]="specialization.image" alt="specialization image" width="90" />
+            }
           </td>
           <td>{{ specialization.name }}</td>
           <td>{{ specialization.description }}</td>
           <td>
             <a [routerLink]="['/dashboard/specializations/details', specialization.id]" class="btn btn-primary">details</a>
-            <!-- <a [routerLink]="['/dashboard/doctors/edit', doctor.id]" class="btn btn-success ms-1">edit</a> -->
-            <!-- <button class="btn btn-danger ms-1" (click)="deleteDoctor(doctor.id)">delete</button> -->
+            <a [routerLink]="['/dashboard/specializations/edit', specialization.id]" class="btn btn-success ms-1">edit</a>
+            <button class="btn btn-danger ms-1" (click)="confirmDelete(specialization.id)">delete</button>
           </td>
         </tr>
       }

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DoctorService } from '../../../../_services/doctor.service';
 import { CommonModule } from '@angular/common';
+import { SpecializationService } from '../../../../_services/specialization.service';
+import { ISpecialization } from '../../../../_interfaces/ispecialization';
 
 @Component({
   selector: 'app-add-doctor',
@@ -15,16 +17,16 @@ export class AddDoctorComponent {
   successMsg = '';
   selectedFile!: File;
 
-  constructor(private fb: FormBuilder, private doctorService: DoctorService) {
+  constructor(private fb: FormBuilder, private doctorService: DoctorService, private specializationService: SpecializationService) {
     this.doctorForm = this.fb.group({
       fname: ['', Validators.required],
       lname: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      specialization: ['', Validators.required],
-      bdate: ['', Validators.required],
+      specializationId: ['', Validators.required],
+      birthDate: ['', Validators.required],
       address: ['', Validators.required],
-      waitingTime: [0, [Validators.required, Validators.min(1)]],
-      desc: ['', Validators.required],
+      waitingTime: [, [Validators.required, Validators.min(1)]],
+      description: ['', Validators.required],
       image: [null, Validators.required]
     });
   }
@@ -52,11 +54,11 @@ export class AddDoctorComponent {
     formData.append('fname', this.doctorForm.value.fname);
     formData.append('lname', this.doctorForm.value.lname);
     formData.append('email', this.doctorForm.value.email);
-    formData.append('specialization', this.doctorForm.value.specialization);
-    formData.append('bdate', this.doctorForm.value.bdate);
+    formData.append('specializationId', this.doctorForm.value.specializationId);
+    formData.append('birthDate', this.doctorForm.value.birthDate);
     formData.append('address', this.doctorForm.value.address);
     formData.append('waitingTime', this.doctorForm.value.waitingTime);
-    formData.append('desc', this.doctorForm.value.desc);
+    formData.append('description', this.doctorForm.value.description);
     formData.append('image', this.selectedFile);
 
     this.doctorService.addDoctor(formData).subscribe({
@@ -69,5 +71,23 @@ export class AddDoctorComponent {
         console.error(err);
       }
     });
+  }
+
+  specializations: ISpecialization[] = [];
+
+  ngOnInit(): void {
+    this.loadSpecializations();
+  }
+
+  loadSpecializations() {
+    this.specializationService.getAllSpecialization().subscribe(
+      (data) => {
+        this.specializations = data?.data ?? [];
+        console.log('Specializations:', this.specializations);
+      },
+      (error) => {
+        console.error('Error fetching Specializations:', error);
+      }
+    );
   }
 }
