@@ -1,7 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IPatientAppointment } from '../_interfaces/IPatientAppointment';
 import { IDoctorAppointments } from '../_interfaces/IDoctorAppointments';
-import { HttpClient } from '@angular/common/http';
 
 
 @Injectable({
