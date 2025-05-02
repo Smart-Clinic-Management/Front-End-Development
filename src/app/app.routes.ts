@@ -21,6 +21,8 @@ import { NotfoundComponent } from './website/pages/notfound/notfound.component';
 import { AllPatientsComponent } from './dashboard/pages/patient/all-patients/all-patients.component';
 import { AddSpecializationComponent } from './dashboard/pages/specialization/add-specialization/add-specialization.component';
 import { EditSpecializationComponent } from './dashboard/pages/specialization/edit-specialization/edit-specialization.component';
+import { AllAppointmentsComponent } from './dashboard/pages/appointments/all-appointments/all-appointments.component';
+import { DoctorScheduleComponent } from './dashboard/pages/schedule/doctor-schedule/doctor-schedule.component';
 
 
 export const routes: Routes = [
@@ -48,11 +50,13 @@ export const routes: Routes = [
       { path: 'doctors/add', component: AddDoctorComponent },
       { path: 'doctors/edit/:id', component: EditDoctorComponent },
       { path: 'doctors/details/:id', component: DoctorDetailsComponent },
+      { path: 'doctors/schedule/:id', component: DoctorScheduleComponent },
       { path: 'specializations', component: AllSpecializaionsComponent },
       { path: 'specializations/add', component: AddSpecializationComponent },
       { path: 'specializations/edit/:id', component: EditSpecializationComponent },
       { path: 'specializations/details/:id', component: SpecializaionDetailsComponent },
-      { path: 'patients', component: AllPatientsComponent }
+      { path: 'patients', component: AllPatientsComponent },
+      { path: 'appointments', component: AllAppointmentsComponent }
     ]
   },
   { path: '**', component: NotfoundComponent }
