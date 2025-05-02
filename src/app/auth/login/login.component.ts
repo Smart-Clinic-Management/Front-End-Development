@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from '../../_services/auth.service';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -6,9 +6,12 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
-  imports: [CommonModule,FormsModule,RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './login.component.html',
-  styleUrls: ['../../../assets/website/css/bootstrap.min.css','./login.component.css']
+  styleUrls: [
+    '../../../assets/website/css/bootstrap.min.css',
+    './login.component.css',
+  ],
 })
 export class LoginComponent {
   email: string = '';
@@ -20,11 +23,24 @@ export class LoginComponent {
   onSubmit() {
     this.authService.login(this.email, this.password).subscribe({
       next: () => {
-        this.router.navigate(['/dashboard']);
+        const role = this.authService.getRoleFromToken();
+        console.log(role);
+        switch (role) {
+          case 'patient':
+            this.router.navigate(['/']);
+            break;
+          case 'admin':
+            this.router.navigate(['/dashboard']);
+            break;
+
+          default:
+            break;
+        }
+        // this.router.navigate(['/home']);
       },
       error: (err) => {
         this.errorMessage = 'Login Failed. Please check your credentials.';
-      }
+      },
     });
   }
 }

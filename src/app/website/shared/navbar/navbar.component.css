@@ -1,0 +1,14 @@
+.nav-dropdownLink{
+    display: block;
+    background-color: transparent !important;
+    width: 100% !important;
+    color: gray !important;
+    word-break: keep-all !important;
+    word-wrap: normal !important;
+    padding: 5px 0 !important;
+    text-align: center;
+}
+.nav-dropdownLink:hover{
+    color: #000 !important;
+    border: none !important;
+}
