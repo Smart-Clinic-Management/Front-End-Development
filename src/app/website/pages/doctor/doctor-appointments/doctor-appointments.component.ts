@@ -19,7 +19,7 @@ export class DoctorAppointmentsComponent implements OnInit {
   doctorAppointments!: IDoctorAppointments
 
   ngOnInit(): void {
-    this.AppointmentService.GetDoctorAppointment("1").subscribe((res) => {
+    this.AppointmentService.GetDoctorAppointments("1").subscribe((res) => {
       console.log(res);
       this.doctorAppointments = res ;
       
