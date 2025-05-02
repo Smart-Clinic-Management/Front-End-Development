@@ -24,6 +24,7 @@
             <a [routerLink]="['/dashboard/doctors/details', doctor.id]" class="btn btn-primary">details</a>
             <a [routerLink]="['/dashboard/doctors/edit', doctor.id]" class="btn btn-success ms-1">edit</a>
             <button class="btn btn-danger ms-1" (click)="confirmDelete(doctor.id)">delete</button>
+            <a [routerLink]="['/dashboard/doctors/schedule', doctor.id]" class="btn btn-info ms-1">schedule</a>
           </td>
         </tr>
       }

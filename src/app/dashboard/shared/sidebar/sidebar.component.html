@@ -61,24 +61,16 @@
             class="sidebar-link waves-effect waves-dark sidebar-link"
             [routerLink]="['/dashboard/patients']"
             aria-expanded="false"
-            ><i class="fas fa-home me-1"></i><span class="hide-menu">Patients</span></a
+            ><i class="fas fa-procedures me-1"></i><span class="hide-menu">Patients</span></a
           >
         </li>
         <li class="sidebar-item">
           <a
-            class="sidebar-link has-arrow waves-effect waves-dark"
-            href="javascript:void(0)"
+            class="sidebar-link waves-effect waves-dark sidebar-link"
+            [routerLink]="['/dashboard/appointments']"
             aria-expanded="false"
-            ><i class="fas fa-calendar-check me-1"></i><span class="hide-menu">Appointmens </span></a
+            ><i class="fas fa-calendar-check me-1"></i><span class="hide-menu">Appointments</span></a
           >
-          <ul aria-expanded="false" class="collapse first-level">
-            <li class="sidebar-item">
-              <a href="#" class="sidebar-link"
-                ><i class="mdi mdi-note-outline"></i
-                ><span class="hide-menu"> All Appointmens </span></a
-              >
-            </li>
-          </ul>
         </li>
       </ul>
     </nav>
