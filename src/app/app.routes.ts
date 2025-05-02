@@ -26,6 +26,8 @@ import { DoctorAppointmentsComponent } from './website/pages/doctor/doctor-appoi
 import { DoctorGuard } from './_guards/doctor.guard';
 import { AddSpecializationComponent } from './dashboard/pages/specialization/add-specialization/add-specialization.component';
 import { EditSpecializationComponent } from './dashboard/pages/specialization/edit-specialization/edit-specialization.component';
+import { AllAppointmentsComponent } from './dashboard/pages/appointments/all-appointments/all-appointments.component';
+import { DoctorScheduleComponent } from './dashboard/pages/schedule/doctor-schedule/doctor-schedule.component';
 
 export const routes: Routes = [
   {
@@ -71,6 +73,7 @@ export const routes: Routes = [
       { path: 'doctors/add', component: AddDoctorComponent },
       { path: 'doctors/edit/:id', component: EditDoctorComponent },
       { path: 'doctors/details/:id', component: DoctorDetailsComponent },
+      { path: 'doctors/schedule/:id', component: DoctorScheduleComponent },
       { path: 'specializations', component: AllSpecializaionsComponent },
       {
         path: 'specializations/details/:id',
@@ -82,7 +85,9 @@ export const routes: Routes = [
       { path: 'specializations/details/:id', component: SpecializaionDetailsComponent },
       { path: 'patients', component: AllPatientsComponent }
     ],
-
+      { path: 'patients', component: AllPatientsComponent },
+      { path: 'appointments', component: AllAppointmentsComponent }
+    ]
   },
   { path: '**', component: NotfoundComponent },
 ];
