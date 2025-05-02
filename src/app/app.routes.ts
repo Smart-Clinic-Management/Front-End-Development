@@ -77,12 +77,12 @@ export const routes: Routes = [
         component: SpecializaionDetailsComponent,
       },
       { path: 'patients', component: AllPatientsComponent },
-    ],
       { path: 'specializations/add', component: AddSpecializationComponent },
       { path: 'specializations/edit/:id', component: EditSpecializationComponent },
       { path: 'specializations/details/:id', component: SpecializaionDetailsComponent },
       { path: 'patients', component: AllPatientsComponent }
-    ]
+    ],
+
   },
   { path: '**', component: NotfoundComponent },
 ];
