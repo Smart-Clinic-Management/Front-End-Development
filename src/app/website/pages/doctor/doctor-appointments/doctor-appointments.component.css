@@ -1,0 +1,44 @@
+div .header {
+  background: linear-gradient(to right, #0181f5 0%, #5db2ff 100%) !important;
+  text-align: center !important;
+  padding: 20px !important;
+  color: white !important;
+  border-radius: 0 0 30px 30px !important;
+}
+div .header h1 {
+  padding: 20px 0 0 0 !important;
+  color: white !important;
+}
+
+div .header p {
+  color: white !important;
+}
+.card {
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid lightblue;
+  transition: all 0.3s ease;
+}
+.card-title {
+  padding: 10px;
+  font-weight: normal;
+  text-align: center;
+  background: linear-gradient(to right, #0181f5 0%, #5db2ff 100%);
+  border-radius: 5px 30px;
+  color: white;
+  margin-bottom: 10px;
+}
+.btn {
+  width: 30%;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease-in-out;
+}
+.card-text {
+  font-size: 15px;
+  margin-bottom: 10px;
+  padding: 15px;
+  border-radius: 20px;
+}

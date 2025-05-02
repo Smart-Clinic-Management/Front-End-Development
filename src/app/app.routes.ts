@@ -21,6 +21,9 @@ import { NotfoundComponent } from './website/pages/notfound/notfound.component';
 import { AllPatientsComponent } from './dashboard/pages/patient/all-patients/all-patients.component';
 import { DoctordetailsComponent } from './website/pages/doctor/doctordetails/doctordetails.component';
 import { PatientAppointmentsComponent } from './website/pages/Patient/patient-appointments/patient-appointments.component';
+import { PatientGuard } from './_guards/patient.guard';
+import { DoctorAppointmentsComponent } from './website/pages/doctor/doctor-appointments/doctor-appointments.component';
+import { DoctorGuard } from './_guards/doctor.guard';
 import { AddSpecializationComponent } from './dashboard/pages/specialization/add-specialization/add-specialization.component';
 import { EditSpecializationComponent } from './dashboard/pages/specialization/edit-specialization/edit-specialization.component';
 import { AllAppointmentsComponent } from './dashboard/pages/appointments/all-appointments/all-appointments.component';
@@ -33,16 +36,32 @@ export const routes: Routes = [
     children: [
       { path: '', component: WebsiteHomeComponent },
       { path: 'doctors', component: DoctorListComponent },
-      { path: 'doctor/:id', component: DoctordetailsComponent }, 
+      { path: 'doctor/:id', component: DoctordetailsComponent },
       { path: 'specializaions', component: SpecializaionListComponent },
-      { path: 'doctorProfile', component: DoctorProfileComponent },
-      { path: 'patientProfile', component: PatientProfileComponent },
-      { path: 'patientAppointments', component: PatientAppointmentsComponent }, 
-
-    ]
+      {
+        path: 'doctorProfile',
+        component: DoctorProfileComponent,
+        canActivate: [DoctorGuard],
+      },
+      {
+        path: 'patientProfile',
+        component: PatientProfileComponent,
+        canActivate: [PatientGuard],
+      },
+      {
+        path: 'patientAppointments',
+        component: PatientAppointmentsComponent,
+        canActivate: [PatientGuard],
+      },
+      {
+        path: 'doctor-appointments',
+        component: DoctorAppointmentsComponent,
+        canActivate: [DoctorGuard],
+      },
+    ],
   },
   { path: 'login', component: LoginComponent },
-  { path: 'register', component:  RegisterComponent},
+  { path: 'register', component: RegisterComponent },
   { path: 'unauthorized', component: UnauthorizedComponent },
   {
     path: 'dashboard',
@@ -56,12 +75,19 @@ export const routes: Routes = [
       { path: 'doctors/details/:id', component: DoctorDetailsComponent },
       { path: 'doctors/schedule/:id', component: DoctorScheduleComponent },
       { path: 'specializations', component: AllSpecializaionsComponent },
+      {
+        path: 'specializations/details/:id',
+        component: SpecializaionDetailsComponent,
+      },
+      { path: 'patients', component: AllPatientsComponent },
       { path: 'specializations/add', component: AddSpecializationComponent },
       { path: 'specializations/edit/:id', component: EditSpecializationComponent },
       { path: 'specializations/details/:id', component: SpecializaionDetailsComponent },
+      { path: 'patients', component: AllPatientsComponent }
+    ],
       { path: 'patients', component: AllPatientsComponent },
       { path: 'appointments', component: AllAppointmentsComponent }
     ]
   },
-  { path: '**', component: NotfoundComponent }
+  { path: '**', component: NotfoundComponent },
 ];

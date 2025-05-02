@@ -79,11 +79,14 @@
               <div class="book_btn d-none d-lg-block">
                 @if (isLoggedIn) {
                 <div class="d-flex align-items-center">
+                  @if (authService.getRoleFromToken() == "patient") {
                   <div class="w-100">
                     <a class="popup-with-form" href="#test-form"
                       >Make an Appointment</a
                     >
                   </div>
+                  }
+
                   <div class="dropdown" style="padding-left: 10px">
                     <button
                       class="btn btn-secondary dropdown-toggle"
@@ -94,7 +97,7 @@
                       aria-expanded="false"
                     >
                       <img
-                        [src]="ImgUrl"
+                        [src]="ImgUrl || 'assets/user.png'"
                         style="
                           width: 50px;
                           height: 50px;
@@ -106,21 +109,38 @@
                       <!-- Dropdown button -->
                     </button>
                     <ul
-                      class="dropdown-menu" 
+                      class="dropdown-menu"
                       style="padding: 10px 5px; margin: 0"
                       aria-labelledby="dropdownMenuButton1"
                     >
-                      <p style="margin: 0; text-align: center;padding: 15px;">
-                        {{UserEmail}}
+                      <p style="margin: 0; text-align: center; padding: 15px">
+                        {{ UserEmail }}
                       </p>
                       <hr />
                       <li>
-                        <a href="#" class="nav-dropdownLink">My Profile </a>
-                      </li> 
-                      <li>
-                        <a routerLink="/patientAppointments" class="nav-dropdownLink"> My Appointments </a>
+                        <a
+                          [routerLink]="
+                            authService.getRoleFromToken() == 'patient'
+                              ? '/patientProfile'
+                              : 'doctorProfile'
+                          "
+                          class="nav-dropdownLink"
+                          >My Profile
+                        </a>
                       </li>
-                      <hr>
+                      <li>
+                        <a
+                          [routerLink]="
+                            authService.getRoleFromToken() == 'patient'
+                              ? '/patientAppointments'
+                              : '/doctor-appointments'
+                          "
+                          class="nav-dropdownLink"
+                        >
+                          My Appointments
+                        </a>
+                      </li>
+                      <hr />
                       <li class="d-flex justify-content-center">
                         <button
                           style="
