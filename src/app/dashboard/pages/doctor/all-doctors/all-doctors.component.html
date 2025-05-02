@@ -15,16 +15,12 @@
         <tr>
           <td>{{ doctors.indexOf(doctor) + 1 }}</td>
           <td>
-            <img [src]="doctor.image" alt="doctor image" width="90" />
+            @if(doctor.image !== null){
+              <img [src]="doctor.image" alt="doctor image" width="90" />
+            }
           </td>
           <td>{{ doctor.firstName }} {{ doctor.lastName }}</td>
-          <td>
-            <ul>
-              @for (specialization of doctor.specializations; track $index) {
-              <li>{{ specialization }}</li>
-              }
-            </ul>
-          <td>
+          <td>{{ doctor.specialization }}<td>
             <a [routerLink]="['/dashboard/doctors/details', doctor.id]" class="btn btn-primary">details</a>
             <a [routerLink]="['/dashboard/doctors/edit', doctor.id]" class="btn btn-success ms-1">edit</a>
             <!-- <button class="btn btn-danger ms-1" (click)="deleteDoctor(doctor.id)">delete</button> -->

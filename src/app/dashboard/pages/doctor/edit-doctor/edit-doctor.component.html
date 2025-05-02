@@ -1,149 +1,93 @@
-<form class="form-horizontal" action="" enctype="multipart/form-data" method="post">
+<form *ngIf="doctorForm" [formGroup]="doctorForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data" class="form-horizontal">
   <div class="card-body">
+    <div *ngIf="successMsg" class="alert alert-success">{{ successMsg }}</div>
+
     <div class="form-group row">
-      <label
-        for="fname"
-        class="col-sm-3 text-end control-label col-form-label"
-        >Fname</label
-      >
+      <label class="col-sm-3 text-end control-label col-form-label">First Name</label>
       <div class="col-sm-9">
-        <input
-          type="text"
-          class="form-control"
-          id="fname"
-          placeholder="First Name Here"
-          name="fname"
-        />
+        <input type="text" class="form-control" formControlName="fname" placeholder="First Name" />
+        <div *ngIf="submitted && f['fname'].errors" class="text-danger">
+          <small *ngIf="f['fname'].errors?.['required']">First name is required.</small>
+        </div>
       </div>
     </div>
+
     <div class="form-group row">
-      <label
-        for="fname"
-        class="col-sm-3 text-end control-label col-form-label"
-        >Lname</label
-      >
+      <label class="col-sm-3 text-end control-label col-form-label">Last Name</label>
       <div class="col-sm-9">
-        <input
-          type="text"
-          class="form-control"
-          id="lname"
-          placeholder="Last Name Here"
-          name="lname"
-        />
+        <input type="text" class="form-control" formControlName="lname" placeholder="Last Name" />
+        <div *ngIf="submitted && f['lname'].errors" class="text-danger">
+          <small *ngIf="f['lname'].errors?.['required']">Last name is required.</small>
+        </div>
       </div>
     </div>
+
     <div class="form-group row">
-      <label
-        for="email"
-        class="col-sm-3 text-end control-label col-form-label"
-        >Email</label
-      >
+      <label class="col-sm-3 text-end control-label col-form-label">Email</label>
       <div class="col-sm-9">
-        <input
-          type="email"
-          class="form-control"
-          id="email"
-          placeholder="Email Here"
-          name="email"
-        />
+        <input type="email" class="form-control" formControlName="email" placeholder="Email" />
+        <div *ngIf="submitted && f['email'].errors" class="text-danger">
+          <small *ngIf="f['email'].errors?.['required']">Email is required.</small>
+          <small *ngIf="f['email'].errors?.['email']">Email is invalid.</small>
+        </div>
       </div>
     </div>
+
     <div class="form-group row">
-      <label
-        for="image"
-        class="col-sm-3 text-end control-label col-form-label"
-        >Image</label
-      >
+      <label class="col-sm-3 text-end control-label col-form-label">Image</label>
       <div class="col-sm-9">
-        <input
-          type="file"
-          class="form-control"
-          id="image"
-          placeholder="First Name Here"
-          name="image"
-        />
+        <input type="file" class="form-control" (change)="onFileChange($event)" />
       </div>
     </div>
+
     <div class="form-group row">
-      <label
-        class="col-sm-3 text-end control-label col-form-label"
-        >Specialization</label
-      >
+      <label class="col-sm-3 text-end control-label col-form-label">Specialization</label>
       <div class="col-sm-9">
-        <select class="form-control" name="specialization">
-            <option value="">Cardiology</option>
-            <option value="">Dermatology</option>
-            <option value="">Neurology</option>
-            <option value="">Orthopedics</option>
+        <select class="form-control" formControlName="specializationId">
+          @for (specialization of specializations; track specialization.id) {
+            <option [value]="specialization.id">{{ specialization.name }}</option>
+          }
         </select>
+        <div *ngIf="submitted && f['specializationId'].errors" class="text-danger">
+          <small *ngIf="f['specializationId'].errors?.['required']">Specialization is required.</small>
+        </div>
       </div>
     </div>
+
     <div class="form-group row">
-      <label
-        for="email"
-        class="col-sm-3 text-end control-label col-form-label"
-        >BirthDate</label
-      >
+      <label class="col-sm-3 text-end control-label col-form-label">Address</label>
       <div class="col-sm-9">
-        <input
-          type="date"
-          class="form-control"
-          id="date"
-          placeholder="BirthDate Here"
-          name="bdate"
-        />
+        <input type="text" class="form-control" formControlName="address" placeholder="Address" />
+        <div *ngIf="submitted && f['address'].errors" class="text-danger">
+          <small *ngIf="f['address'].errors?.['required']">Address is required.</small>
+        </div>
       </div>
     </div>
+
     <div class="form-group row">
-      <label
-        class="col-sm-3 text-end control-label col-form-label"
-        >Address</label
-      >
+      <label class="col-sm-3 text-end control-label col-form-label">Waiting Time</label>
       <div class="col-sm-9">
-        <input
-          type="text"
-          class="form-control"
-          id="address"
-          placeholder="Address Here"
-          name="address"
-        />
+        <input type="number" class="form-control" formControlName="waitingTime" placeholder="Waiting Time" />
+        <div *ngIf="submitted && f['waitingTime'].errors" class="text-danger">
+          <small *ngIf="f['waitingTime'].errors?.['required']">Waiting time is required.</small>
+        </div>
       </div>
     </div>
+
     <div class="form-group row">
-      <label
-        class="col-sm-3 text-end control-label col-form-label"
-        >Waiting Time</label
-      >
+      <label class="col-sm-3 text-end control-label col-form-label">Description</label>
       <div class="col-sm-9">
-        <input
-          type="number"
-          class="form-control"
-          placeholder="Waiting Time Here"
-          name="waitingTime"
-        />
-      </div>
-    </div>
-    <div class="form-group row">
-      <label
-        class="col-sm-3 text-end control-label col-form-label"
-        >Description</label
-      >
-      <div class="col-sm-9">
-        <textarea
-          type="text"
-          class="form-control"
-          placeholder="Description Here"
-          name="desc"
-        ></textarea>
+        <textarea class="form-control" formControlName="description" placeholder="Description"></textarea>
+        <div *ngIf="submitted && f['description'].errors" class="text-danger">
+          <small *ngIf="f['description'].errors?.['required']">Description is required.</small>
+        </div>
       </div>
     </div>
   </div>
+
   <div class="border-top">
     <div class="card-body">
-      <button type="submit" class="btn btn-primary">
-        Add
-      </button>
+      <button type="submit" class="btn btn-warning">Update</button>
     </div>
   </div>
 </form>
-

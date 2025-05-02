@@ -22,7 +22,9 @@
       <tr>
         <th>Image</th>
         <td>
-          <img [src]="doctorDetails.image" width="90" alt="Doctor Image">
+          @if(doctorDetails.image !== null){
+            <img [src]="doctorDetails.image" width="90" alt="Doctor Image">
+          }
         </td>
       </tr>
       <tr>
@@ -30,8 +32,8 @@
         <td>{{ doctorDetails.address }}</td>
       </tr>
       <tr>
-        <th>Birth Date</th>
-        <td>{{ doctorDetails.birthDate }}</td>
+        <th>Age</th>
+        <td>{{ doctorDetails.age }}</td>
       </tr>
       <tr>
         <th>Waiting Time</th>
@@ -44,6 +46,10 @@
       <tr>
         <th>Consultaion Time</th>
         <td>{{ doctorDetails.slotDuration }} min</td>
+      </tr>
+      <tr>
+        <th>Specialization</th>
+        <td>{{ doctorDetails.specialization }}</td>
       </tr>
     </tbody>
   </table>

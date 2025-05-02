@@ -3,9 +3,9 @@
     <div *ngIf="successMsg" class="alert alert-success">{{ successMsg }}</div>
 
     <div class="form-group row">
-      <label for="fname" class="col-sm-3 text-end control-label col-form-label">Fname</label>
+      <label for="fname" class="col-sm-3 text-end control-label col-form-label">First Name</label>
       <div class="col-sm-9">
-        <input type="text" class="form-control" id="fname" formControlName="fname" placeholder="First Name Here" />
+        <input type="text" class="form-control" id="fname" formControlName="fname" placeholder="First Name" />
         <div *ngIf="submitted && f['fname'].errors" class="text-danger">
           <small *ngIf="f['fname'].errors?.['required']">First name is required.</small>
         </div>
@@ -13,9 +13,9 @@
     </div>
 
     <div class="form-group row">
-      <label for="lname" class="col-sm-3 text-end control-label col-form-label">Lname</label>
+      <label for="lname" class="col-sm-3 text-end control-label col-form-label">Last Name</label>
       <div class="col-sm-9">
-        <input type="text" class="form-control" id="lname" formControlName="lname" placeholder="Last Name Here" />
+        <input type="text" class="form-control" id="lname" formControlName="lname" placeholder="Last Name" />
         <div *ngIf="submitted && f['lname'].errors" class="text-danger">
           <small *ngIf="f['lname'].errors?.['required']">Last name is required.</small>
         </div>
@@ -25,7 +25,7 @@
     <div class="form-group row">
       <label for="email" class="col-sm-3 text-end control-label col-form-label">Email</label>
       <div class="col-sm-9">
-        <input type="email" class="form-control" id="email" formControlName="email" placeholder="Email Here" />
+        <input type="email" class="form-control" id="email" formControlName="email" placeholder="Email" />
         <div *ngIf="submitted && f['email'].errors" class="text-danger">
           <small *ngIf="f['email'].errors?.['required']">Email is required.</small>
           <small *ngIf="f['email'].errors?.['email']">Email is invalid.</small>
@@ -46,25 +46,24 @@
     <div class="form-group row">
       <label class="col-sm-3 text-end control-label col-form-label">Specialization</label>
       <div class="col-sm-9">
-        <select class="form-control" formControlName="specialization">
+        <select class="form-control" formControlName="specializationId">
           <option value="">Select specialization</option>
-          <option value="Cardiology">Cardiology</option>
-          <option value="Dermatology">Dermatology</option>
-          <option value="Neurology">Neurology</option>
-          <option value="Orthopedics">Orthopedics</option>
+          @for (specialization of specializations; track specialization.id) {
+            <option [value]="specialization.id">{{ specialization.name }}</option>
+          }
         </select>
-        <div *ngIf="submitted && f['specialization'].errors" class="text-danger">
-          <small *ngIf="f['specialization'].errors?.['required']">Specialization is required.</small>
+        <div *ngIf="submitted && f['specializationId'].errors" class="text-danger">
+          <small *ngIf="f['specializationId'].errors?.['required']">Specialization is required.</small>
         </div>
       </div>
     </div>
 
     <div class="form-group row">
-      <label for="date" class="col-sm-3 text-end control-label col-form-label">BirthDate</label>
+      <label for="birthDate" class="col-sm-3 text-end control-label col-form-label">Birth Date</label>
       <div class="col-sm-9">
-        <input type="date" class="form-control" id="date" formControlName="bdate" placeholder="BirthDate Here" />
-        <div *ngIf="submitted && f['bdate'].errors" class="text-danger">
-          <small *ngIf="f['bdate'].errors?.['required']">Birth date is required.</small>
+        <input type="date" class="form-control" id="birthDate" formControlName="birthDate" />
+        <div *ngIf="submitted && f['birthDate'].errors" class="text-danger">
+          <small *ngIf="f['birthDate'].errors?.['required']">Birth date is required.</small>
         </div>
       </div>
     </div>
@@ -72,7 +71,7 @@
     <div class="form-group row">
       <label for="address" class="col-sm-3 text-end control-label col-form-label">Address</label>
       <div class="col-sm-9">
-        <input type="text" class="form-control" id="address" formControlName="address" placeholder="Address Here" />
+        <input type="text" class="form-control" id="address" formControlName="address" placeholder="Address" />
         <div *ngIf="submitted && f['address'].errors" class="text-danger">
           <small *ngIf="f['address'].errors?.['required']">Address is required.</small>
         </div>
@@ -82,10 +81,9 @@
     <div class="form-group row">
       <label class="col-sm-3 text-end control-label col-form-label">Waiting Time</label>
       <div class="col-sm-9">
-        <input type="number" class="form-control" formControlName="waitingTime" placeholder="Waiting Time Here" />
+        <input type="number" class="form-control" formControlName="waitingTime" placeholder="Waiting Time" />
         <div *ngIf="submitted && f['waitingTime'].errors" class="text-danger">
           <small *ngIf="f['waitingTime'].errors?.['required']">Waiting time is required.</small>
-          <small *ngIf="f['waitingTime'].errors?.['min']">Waiting time must be positive.</small>
         </div>
       </div>
     </div>
@@ -93,9 +91,9 @@
     <div class="form-group row">
       <label class="col-sm-3 text-end control-label col-form-label">Description</label>
       <div class="col-sm-9">
-        <textarea class="form-control" formControlName="desc" placeholder="Description Here"></textarea>
-        <div *ngIf="submitted && f['desc'].errors" class="text-danger">
-          <small *ngIf="f['desc'].errors?.['required']">Description is required.</small>
+        <textarea class="form-control" formControlName="description" placeholder="Description"></textarea>
+        <div *ngIf="submitted && f['description'].errors" class="text-danger">
+          <small *ngIf="f['description'].errors?.['required']">Description is required.</small>
         </div>
       </div>
     </div>

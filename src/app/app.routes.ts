@@ -44,7 +44,7 @@ export const routes: Routes = [
       { path: '', component: DashboardHomeComponent },
       { path: 'doctors', component: AllDoctorsComponent },
       { path: 'doctors/add', component: AddDoctorComponent },
-      { path: 'doctors/edit', component: EditDoctorComponent },
+      { path: 'doctors/edit/:id', component: EditDoctorComponent },
       { path: 'doctors/details/:id', component: DoctorDetailsComponent },
       { path: 'specializations', component: AllSpecializaionsComponent },
       { path: 'specializations/details/:id', component: SpecializaionDetailsComponent },
