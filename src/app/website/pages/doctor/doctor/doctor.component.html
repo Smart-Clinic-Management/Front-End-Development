@@ -1,10 +1,6 @@
 <div class="single_expert mb-40">
   <div class="expert_thumb">
-    @if(doctor.image !== null){
-      <img [src]="doctor.image" alt="Doctor Image">
-    }@else {
-      <img src="assets/website/img/defaultUser.png" alt="Doctor Image">
-    }
+    <img [src]="doctor.image || 'assets/docImg.png'" alt="Doctor Image" />
   </div>
   <div class="experts_name text-center">
     <h3>{{ doctor.firstName }} {{ doctor.lastName }}</h3>
