@@ -1,4 +1,4 @@
-export interface DoctorAppointments {
+export interface DoctorSchedual {
   firstName: string;
   lastName: string;
   age: number;

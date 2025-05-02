@@ -29,9 +29,12 @@ export class LoginComponent {
           case 'patient':
             this.router.navigate(['/']);
             break;
-          case 'admin':
-            this.router.navigate(['/dashboard']);
-            break;
+            case 'doctor':
+              this.router.navigate(['/doctorProfile']);
+              break;
+               case 'admin':
+              this.router.navigate(['/dashboard']);
+              break;
 
           default:
             break;

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IDoctorListItem } from '../_interfaces/idoctor-list-item';
 import { IDoctorDetails } from '../_interfaces/idoctor-details';
-import { DoctorAppointments } from '../_interfaces/DoctorAppointments';
+import { DoctorSchedual } from '../_interfaces/DoctorSchedual';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +29,6 @@ export class DoctorService {
   }
 
   GetDoctorWithAppointments(doctorId:number){
-    return this.http.get<{ data: DoctorAppointments}>(`${this.baseUrl}/schedule/?id=${doctorId}`);
+    return this.http.get<{ data: DoctorSchedual}>(`${this.baseUrl}/schedule/?id=${doctorId}`);
   }
 }

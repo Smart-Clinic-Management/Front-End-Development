@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { DoctorService } from '../../../../_services/doctor.service';
 import { ActivatedRoute } from '@angular/router';
-import { DoctorAppointments } from '../../../../_interfaces/DoctorAppointments';
+import { DoctorSchedual } from '../../../../_interfaces/DoctorSchedual';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -14,7 +14,7 @@ export class DoctordetailsComponent {
 
   doctorService = inject(DoctorService);
 
-  doctorAppintment!:DoctorAppointments  ;
+  doctorAppintment!:DoctorSchedual  ;
 
   constructor(private route: ActivatedRoute) {}
 
