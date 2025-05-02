@@ -28,6 +28,7 @@ import { AddSpecializationComponent } from './dashboard/pages/specialization/add
 import { EditSpecializationComponent } from './dashboard/pages/specialization/edit-specialization/edit-specialization.component';
 import { AllAppointmentsComponent } from './dashboard/pages/appointments/all-appointments/all-appointments.component';
 import { DoctorScheduleComponent } from './dashboard/pages/schedule/doctor-schedule/doctor-schedule.component';
+import { SpecializationDoctorsComponent } from './website/pages/doctor/specialization-doctors/specialization-doctors.component';
 
 export const routes: Routes = [
   {
@@ -38,6 +39,7 @@ export const routes: Routes = [
       { path: 'doctors', component: DoctorListComponent },
       { path: 'doctor/:id', component: DoctordetailsComponent },
       { path: 'specializaions', component: SpecializaionListComponent },
+      { path: 'specializaion/doctors/:id', component: SpecializationDoctorsComponent },
       {
         path: 'doctorProfile',
         component: DoctorProfileComponent,

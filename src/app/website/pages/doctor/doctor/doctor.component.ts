@@ -9,5 +9,5 @@ import { IDoctorListItem } from '../../../../_interfaces/idoctor-list-item';
   styleUrl: './doctor.component.css'
 })
 export class DoctorComponent {
-  @Input() doctor!: IDoctorListItem;
+  @Input() doctor!: any;
 }
