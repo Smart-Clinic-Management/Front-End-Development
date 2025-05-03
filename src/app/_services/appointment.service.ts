@@ -20,14 +20,4 @@ export class AppointmentService {
     return this.http.get<IDoctorAppointments>(this.baseUrl+"GetDoctorAppointments/"+id)
   }
   
-  CreateAppointment(appointmet: IAppointmentRequest) {
-    console.log(appointmet);
-
-
-    return this.http.post(this.baseUrl, appointmet, {
-      headers: {
-        Authorization: 'Bearer ' + localStorage.getItem('token'),
-      },
-    });
-  }
 }
