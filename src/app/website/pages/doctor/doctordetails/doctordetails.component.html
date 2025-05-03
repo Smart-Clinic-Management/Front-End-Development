@@ -3,11 +3,15 @@
   rel="stylesheet"
 />
 <app-loader [show]="isLoading"></app-loader>
-<div style="margin: 5rem auto;min-height: 400px;" class="container-fluid">
-@if (!isLoading) {
+<div style="margin: 5rem auto; min-height: 400px" class="container-fluid">
+  @if (!isLoading) {
   <div class="profile-card">
-    <img [src]="doctorAppintment.image || 'assets/docImg.png'" alt="Doctor" class="profile-img" />
-    <h2 style="margin-top: 1rem;font-size: 2rem;">
+    <img
+      [src]="doctorAppintment.image || 'assets/docImg.png'"
+      alt="Doctor"
+      class="profile-img"
+    />
+    <h2 style="margin-top: 1rem; font-size: 2rem">
       <i class="bi bi-bandaid"></i> Dr. {{ doctorAppintment.firstName }}
       {{ doctorAppintment.lastName }}
     </h2>
@@ -60,7 +64,13 @@
       id="tuesday"
     >
       @for (item2 of item.slots; track $index) {
-      <button   class="slot-btn" [ngClass]="{ active: item2.isAvailable}">{{item2.time}}</button>
+      <button
+        (click)="showLightBox = true; handleAppointment(item.day, item2.time)"
+        class="slot-btn"
+        [ngClass]="{ active: item2.isAvailable }"
+      >
+        {{ item2.time }}
+      </button>
       }
     </div>
     } @else {
@@ -74,8 +84,21 @@
       </p>
     </div>
     } }
-
   </div>
-}
+  }
 </div>
 
+<div *ngIf="showLightBox" class="lightbox">
+  <div (click)="showLightBox = false" class="overlay"></div>
+
+  <div class="content">
+    <h2><i class="bi h2 bi-check"></i> Confirm Appointment</h2>
+    <p>DR. {{ doctorAppintment.firstName }} {{ doctorAppintment.lastName }}</p>
+    <p class="h3">{{ selected.day }}</p>
+    <p style="color: blue">{{ selected.date }} -- {{ selected.time }}</p>
+    <button (click)="ConfirmAppointment(doctorAppintment.specializationId)" style="background-color: blue" class="btn text-white w-100">
+      Confirm
+    </button>
+    <!-- <app-loader [show]="true"></app-loader> -->
+  </div>
+</div>

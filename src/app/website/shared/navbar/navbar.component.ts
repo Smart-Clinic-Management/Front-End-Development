@@ -22,6 +22,8 @@ export class NavbarComponent implements OnInit
   ngOnInit(): void {
     this.UserEmail = this.authService.GetEmailFromToken()  ;
     this.authService.GetProfileImg().subscribe( res => {
+      console.log(res);
+      
       this.ImgUrl = res.data.profileImg;
     } ) ;
     

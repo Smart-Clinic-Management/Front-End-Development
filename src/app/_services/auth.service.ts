@@ -6,7 +6,7 @@ import { Observable, tap } from 'rxjs';
 import { IResponse } from '../_interfaces/IResponse';
 
 const ROLE_CLAIM = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role";
-const email = "sub";
+const email = "email";
 const id = "id";
 
 interface TokenPayload {
@@ -29,7 +29,6 @@ export class AuthService {
     return this.http.post<any>(this.apiUrl+'/login', { email, password })
       .pipe(
         tap(response => {
-          console.log('Login Response:', response);
           localStorage.setItem('token', response.data.token);
           this.getRoleFromToken()
         })
