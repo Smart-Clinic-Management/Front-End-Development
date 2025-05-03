@@ -19,4 +19,5 @@ export class AppointmentService {
   GetDoctorAppointment(id:string){
     return this.http.get<IDoctorAppointments>(this.baseUrl+"GetDoctorAppointments/"+id)
   }
+  
 }

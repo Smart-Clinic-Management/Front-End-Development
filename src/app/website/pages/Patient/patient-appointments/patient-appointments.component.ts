@@ -22,8 +22,7 @@ export class PatientAppointmentsComponent implements OnInit {
   ngOnInit(): void {
     const id = this.authServie.GetId();
 
-    this.appointmentService.GetPatientAppointment('1').subscribe((res) => {
-      // console.log(res.data[0].doctorId);
+    this.appointmentService.GetPatientAppointment(id!).subscribe((res) => {
       this.appointments! = res ;
       // console.log(this.appointments?.data);
       

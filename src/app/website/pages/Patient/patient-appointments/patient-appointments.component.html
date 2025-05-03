@@ -7,12 +7,12 @@
     <div class="row">
       <div class="col-lg-4 col-md-6 col-12 mb-4" *ngFor="let appt of appointments?.data; let i = index">
         <div class="appointment-card">
-          <h3 class="doctor-title">vksb vlb</h3>
-          <p><strong>Appointment Date:</strong> kdsvnalens</p>
+          <h3 class="doctor-title">{{appt.doctorFullName}}</h3>
+          <p><strong>Appointment Date:</strong> {{appt.appointmentDate}}</p>
           <hr>
-          <p><strong>Start Time:</strong>dnvoaiv</p>
+          <p><strong>Start Time:</strong>{{appt.startTime}}</p>
           <hr>
-          <p><strong>End Time:</strong>oibdsvoa</p>
+          <p><strong>End Time:</strong>{{appt.endTime}}</p>
           <p class="status">
             <strong>Status:</strong>
             <span class="badge bg-warning text-dark" *ngIf="appt.status === 'Pending'">{{ appt.status }}</span>

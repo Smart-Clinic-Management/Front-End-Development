@@ -8,6 +8,7 @@ export interface DoctorSchedual {
   userPhoneNumber: string;
   image: string;
   specialization: string;
+  specializationId: string;
   waitingTime: number;
   availableSchedule: {
     day: string;
