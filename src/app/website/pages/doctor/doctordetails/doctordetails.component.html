@@ -90,8 +90,8 @@
 
 <div *ngIf="showLightBox" class="lightbox">
   <div (click)="showLightBox = false" class="overlay"></div>
-
   <div class="content">
+    <div *ngIf="msg" style="background-color: green; color: #fff;" class="alert alert-success">{{msg}}</div>
     <h2><i class="bi h2 bi-check"></i> Confirm Appointment</h2>
     <p>DR. {{ doctorAppintment.firstName }} {{ doctorAppintment.lastName }}</p>
     <p class="h3">{{ selected.day }}</p>
@@ -99,6 +99,5 @@
     <button (click)="ConfirmAppointment(doctorAppintment.specializationId)" style="background-color: blue" class="btn text-white w-100">
       Confirm
     </button>
-    <!-- <app-loader [show]="true"></app-loader> -->
   </div>
 </div>
