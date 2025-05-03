@@ -31,4 +31,12 @@ export class AppointmentService {
       },
     });
   }
+
+  GetPatientAppointmentD(id:number){
+    return this.http.get<IPatientAppointment>(this.baseUrl+"GetPatientAppointments/"+id)
+  }
+
+  GetDoctorAppointmentD(id:number){
+    return this.http.get<IDoctorAppointments>(this.baseUrl+"GetDoctorAppointments/"+id)
+  }
 }
