@@ -32,6 +32,8 @@ export class DoctordetailsComponent {
 
   selected!: SelectedAppointment;
 
+  msg: string = '';
+
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
@@ -46,7 +48,6 @@ export class DoctordetailsComponent {
           this.isLoading = false;
 
           console.log(this.doctorAppintment.availableSchedule);
-          
         });
       // this.doctorId = +; // + converts string to number
     });
@@ -92,9 +93,16 @@ export class DoctordetailsComponent {
         startTime: this.selected.time,
       };
 
-      this.AppointmentService.CreateAppointment(confirm).subscribe((res) => {
-        console.log(res);
-      });
+      this.AppointmentService.CreateAppointment(confirm).subscribe(
+        (res) => {
+          this.msg = 'Appointment Added Successfuly';
+        },
+        (error) => {
+          this.msg = 'something went wrong try again later!';
+          console.log(error);
+          
+        }
+      );
     });
   }
 }

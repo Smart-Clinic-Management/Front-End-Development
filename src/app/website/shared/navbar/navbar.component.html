@@ -44,7 +44,8 @@
           <div class="col-xl-2 col-lg-2">
             <div class="logo">
               <a [routerLink]="['/']">
-                <img src="assets/website/img/logo.png" alt="" />
+                <h2 style="font-weight: bold; color: #0d6efd ;">Tabiby</h2>
+                <!-- <img src="assets/website/img/logo.png" alt="" /> -->
               </a>
             </div>
           </div>
@@ -79,13 +80,7 @@
               <div class="book_btn d-none d-lg-block">
                 @if (isLoggedIn) {
                 <div class="d-flex align-items-center">
-                  @if (authService.getRoleFromToken() == "patient") {
-                  <div class="w-100">
-                    <a class="popup-with-form" href="#test-form"
-                      >Make an Appointment</a
-                    >
-                  </div>
-                  }
+                  
 
                   <div class="dropdown" style="padding-left: 10px">
                     <button
@@ -143,7 +138,7 @@
                       <hr />
                       <li class="d-flex justify-content-center">
                         <button
-                          style="
+                          style=" 
                             color: #fff;
                             background-color: red;
                             width: 100%;
