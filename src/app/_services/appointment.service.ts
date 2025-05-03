@@ -23,7 +23,7 @@ export class AppointmentService {
       this.baseUrl + '/GetDoctorAppointments/' + id
     );
   }
-  
+
   CreateAppointment(appointmet: IAppointmentRequest) {
     return this.http.post(this.baseUrl, appointmet, {
       headers: {
@@ -33,10 +33,10 @@ export class AppointmentService {
   }
 
   GetPatientAppointmentD(id:number){
-    return this.http.get<IPatientAppointment>(this.baseUrl+"GetPatientAppointments/"+id)
+    return this.http.get<IPatientAppointment>(this.baseUrl+"/GetPatientAppointments/"+id)
   }
 
   GetDoctorAppointmentD(id:number){
-    return this.http.get<IDoctorAppointments>(this.baseUrl+"GetDoctorAppointments/"+id)
+    return this.http.get<IDoctorAppointments>(this.baseUrl+"/GetDoctorAppointments/"+id)
   }
 }
