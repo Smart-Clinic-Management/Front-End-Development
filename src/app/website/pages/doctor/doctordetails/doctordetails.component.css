@@ -18,24 +18,27 @@
 
 .profile-card
 {
-    width: 30%;
+   padding: 0 ;
+    width: 40%;
 }
 
 .info-card
 {
     width: 40%;
+    border: 1px solid #0040ff3d;
 }
 
 .schedule-card
 {
+  border: 1px solid #0040ff3f;
     width: 40%;
     text-align: left;
 }
 
 .profile-img {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
+  /* height: 120px; */
+  width: 100%;
+  border-radius: 5%;
   object-fit: cover;
   margin-bottom: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -48,7 +51,8 @@ h2 {
 
 .specialty {
   color: #666;
-  font-size: 14px;
+  font-size: 18px;
+  margin-bottom: 1.5rem;
 }
 
 .info-card {

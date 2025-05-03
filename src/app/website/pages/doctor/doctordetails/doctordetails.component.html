@@ -2,11 +2,12 @@
   href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
   rel="stylesheet"
 />
-
-<div style="margin: 5rem auto" class="container-fluid">
+<app-loader [show]="isLoading"></app-loader>
+<div style="margin: 5rem auto;min-height: 400px;" class="container-fluid">
+@if (!isLoading) {
   <div class="profile-card">
-    <img src="doctor.jpg" alt="Doctor" class="profile-img" />
-    <h2>
+    <img [src]="doctorAppintment.image || 'assets/docImg.png'" alt="Doctor" class="profile-img" />
+    <h2 style="margin-top: 1rem;font-size: 2rem;">
       <i class="bi bi-bandaid"></i> Dr. {{ doctorAppintment.firstName }}
       {{ doctorAppintment.lastName }}
     </h2>
@@ -75,4 +76,6 @@
     } }
 
   </div>
+}
 </div>
+
