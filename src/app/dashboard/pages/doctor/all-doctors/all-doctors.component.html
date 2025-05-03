@@ -16,7 +16,7 @@
           <td>{{ doctors.indexOf(doctor) + 1 }}</td>
           <td>
             @if(doctor.image !== null){
-              <img [src]="doctor.image" alt="doctor image" width="90" />
+              <img [src]="doctor.image" alt="doctor image" width="90" height="90"/>
             }
           </td>
           <td>{{ doctor.firstName }} {{ doctor.lastName }}</td>
@@ -25,6 +25,7 @@
             <a [routerLink]="['/dashboard/doctors/edit', doctor.id]" class="btn btn-success ms-1">edit</a>
             <button class="btn btn-danger ms-1" (click)="confirmDelete(doctor.id)">delete</button>
             <a [routerLink]="['/dashboard/doctors/schedule', doctor.id]" class="btn btn-info ms-1">schedule</a>
+            <a [routerLink]="['/dashboard/doctors/appointments', doctor.id]" class="btn btn-warning ms-1">appointments</a>
           </td>
         </tr>
       }

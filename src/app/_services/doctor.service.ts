@@ -35,4 +35,8 @@ export class DoctorService {
   GetDoctorWithAppointments(doctorId:number){
     return this.http.get<{ data: DoctorSchedual}>(`${this.baseUrl}/schedule/?id=${doctorId}`);
   }
+
+  GetDoctorSchedule(doctorId:number){
+    return this.http.get<{ data: any[]}>(`https://localhost:7047/api/DoctorSchedule/GetByDoctor/${doctorId}`);
+  }
 }

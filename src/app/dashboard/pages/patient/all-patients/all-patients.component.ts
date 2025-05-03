@@ -1,10 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { IpatientListItem } from '../../../../_interfaces/ipatient-list-item';
 import { PatientService } from '../../../../_services/patient.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-all-patients',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './all-patients.component.html',
   styleUrl: './all-patients.component.css'
 })

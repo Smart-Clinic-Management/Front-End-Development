@@ -1,1 +1,29 @@
-<p>doctor-schedule works!</p>
+<h5 class="card-title">Doctors List</h5>
+<div class="table-responsive">
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Day</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th>Slot Duration</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (schedule of doctorSchedule; track schedule.id) {
+        <tr>
+          <td>{{ doctorSchedule.indexOf(schedule) + 1 }}</td>
+          <td>{{ schedule.dayOfWeek }}</td>
+          <td>{{ schedule.startTime }}</td>
+          <td>{{ schedule.endTime }}</td>
+          <td>{{ schedule.slotDuration }}</td>
+          <td></td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+<a [routerLink]="['/dashboard/doctors/createSchedule', doctorId]" class="btn btn-primary">Add New Day</a>
+
+

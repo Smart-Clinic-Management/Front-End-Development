@@ -1,0 +1,49 @@
+<h5 class="card-title">Patient Details</h5>
+
+<div class="table-responsive" *ngIf="patientDetails">
+  <table id="zero_config" class="table table-bordered">
+    <tbody>
+      <tr>
+        <th>First Name</th>
+        <td>{{ patientDetails.firstName }}</td>
+      </tr>
+      <tr>
+        <th>Last Name</th>
+        <td>{{ patientDetails.lastName }}</td>
+      </tr>
+      <tr>
+        <th>Email</th>
+        <td>{{ patientDetails.userEmail }}</td>
+      </tr>
+      <tr>
+        <th>Phone</th>
+        <td>{{ patientDetails.userPhoneNumber }}</td>
+      </tr>
+      <tr>
+        <th>Image</th>
+        <td>
+          @if(patientDetails.image !== null){
+            <img [src]="patientDetails.image" width="90" alt="Doctor Image">
+          }
+        </td>
+      </tr>
+      <tr>
+        <th>Address</th>
+        <td>{{ patientDetails.address }}</td>
+      </tr>
+      <tr>
+        <th>Age</th>
+        <td>{{ patientDetails.age }}</td>
+      </tr>
+      <tr>
+        <th>Medical History</th>
+        <td>{{ patientDetails.medicalHistory }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+@if(!patientDetails){
+  <div>
+    <p>Loading patient details...</p>
+  </div>
+}
