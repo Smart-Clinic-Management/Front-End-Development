@@ -26,26 +26,14 @@ body {
 }
 
 .profile-body {
-  margin-top: 100px;
+  margin: 100px auto;
   background: white;
   padding: 2rem;
   border-radius: 0 0 1rem 1rem;
   box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
   max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
-.info-item {
-  margin-bottom: 1.5rem;
-  font-size: 1rem;
-  color: #555;
-}
-
-.info-item i {
-  color: #0d6efd;
-  margin-right: 0.5rem;
-}
 
 .edit-btn {
   margin-top: 2rem;
@@ -53,6 +41,34 @@ body {
 .edit-btn a {
   color: #333;
   background: linear-gradient(to right, #0181f5 0%, #5db2ff 100%);
+}
+.profile-body h4 {
+  font-weight: 600;
+  color: #333;
+}
 
+.info-item {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+  position: relative;
+  color: #555;
+  display: flex;
+  gap: 20px;
+}
 
+.info-item .icon {
+  color: #0d6efd;
+  font-size: 1.2rem;
+}
+
+.edit-btn .btn {
+  font-weight: 500;
+  padding: 0.5rem 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.edit-btn .btn:hover {
+  background-color: #0d6efd;
+  color: white;
 }

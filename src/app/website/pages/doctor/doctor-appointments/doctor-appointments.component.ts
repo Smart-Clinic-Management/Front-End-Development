@@ -20,7 +20,7 @@ export class DoctorAppointmentsComponent implements OnInit {
   isLoading:boolean = true ;
 
   ngOnInit(): void {
-    this.AppointmentService.GetDoctorAppointment(this.AuthService.GetId()!).subscribe((res) => {
+    this.AppointmentService.GetDoctorAppointment(this.AuthService.GetId()!).subscribe((res) => {      
       this.isLoading =false ;
       this.doctorAppointments = res ;
     });
