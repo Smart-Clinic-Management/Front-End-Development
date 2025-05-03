@@ -7,6 +7,7 @@ import { IAppointmentRequest } from './../_interfaces/IAppointmentsRequest';
 @Injectable({
   providedIn: 'root',
 })
+
 export class AppointmentService {
   private baseUrl = 'https://localhost:7047/api/Appointments';
   constructor(private http: HttpClient) {}
@@ -24,8 +25,6 @@ export class AppointmentService {
   }
   
   CreateAppointment(appointmet: IAppointmentRequest) {
-    console.log(appointmet);
-    
     return this.http.post(this.baseUrl, appointmet, {
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('token'),
