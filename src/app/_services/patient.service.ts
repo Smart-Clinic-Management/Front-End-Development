@@ -17,6 +17,6 @@ export class PatientService {
   }
 
   getPatientDetails(id: number): Observable<{ data: IpatientDetails }> {
-    return this.http.get<{ data: IpatientDetails }>(`${this.baseUrl}/${id}`);
+    return this.http.get<{ data: IpatientDetails }>(`${this.baseUrl}/GetById/${id}`);
   }
 }

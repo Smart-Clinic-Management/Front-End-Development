@@ -29,6 +29,10 @@ import { EditSpecializationComponent } from './dashboard/pages/specialization/ed
 import { AllAppointmentsComponent } from './dashboard/pages/appointments/all-appointments/all-appointments.component';
 import { DoctorScheduleComponent } from './dashboard/pages/schedule/doctor-schedule/doctor-schedule.component';
 import { SpecializationDoctorsComponent } from './website/pages/doctor/specialization-doctors/specialization-doctors.component';
+import { PatientDetailsComponent } from './dashboard/pages/patient/patient-details/patient-details.component';
+import { DashboardPatientAppointmentComponent } from './dashboard/pages/patient/dashboard-patient-appointment/dashboard-patient-appointment.component';
+import { DashboardDoctorAppointmentComponent } from './dashboard/pages/doctor/dashboard-doctor-appointment/dashboard-doctor-appointment.component';
+import { CreateScheduleComponent } from './dashboard/pages/schedule/create-schedule/create-schedule.component';
 
 export const routes: Routes = [
   {
@@ -76,17 +80,16 @@ export const routes: Routes = [
       { path: 'doctors/edit/:id', component: EditDoctorComponent },
       { path: 'doctors/details/:id', component: DoctorDetailsComponent },
       { path: 'doctors/schedule/:id', component: DoctorScheduleComponent },
+      { path: 'doctors/appointments/:id', component: DashboardDoctorAppointmentComponent },
+      { path: 'doctors/createSchedule/:id', component: CreateScheduleComponent },
       { path: 'specializations', component: AllSpecializaionsComponent },
-      {
-        path: 'specializations/details/:id',
-        component: SpecializaionDetailsComponent,
-      },
-      { path: 'patients', component: AllPatientsComponent },
+      { path: 'specializations/details/:id',component: SpecializaionDetailsComponent},
       { path: 'specializations/add', component: AddSpecializationComponent },
       { path: 'specializations/edit/:id', component: EditSpecializationComponent },
       { path: 'specializations/details/:id', component: SpecializaionDetailsComponent },
       { path: 'patients', component: AllPatientsComponent },
-      { path: 'patients', component: AllPatientsComponent },
+      { path: 'patients/:id', component: PatientDetailsComponent },
+      { path: 'patients/appointments/:id', component: DashboardPatientAppointmentComponent },
       { path: 'appointments', component: AllAppointmentsComponent }
     ],
   },

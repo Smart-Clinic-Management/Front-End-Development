@@ -15,12 +15,11 @@
         <tr>
           <td>{{ patients.indexOf(patient) + 1 }}</td>
           <td>{{ patient.firstName }} {{ patient.lastName }}</td>
-          <td></td>
-          <td></td>
+          <td>{{ patient.userPhoneNumber }}</td>
+          <td>{{ patient.age }}</td>
           <td>
-            <a class="btn btn-primary">details</a>
-            <a class="btn btn-success ms-1">Appointments</a>
-            <a class="btn btn-danger ms-1">Delete</a>
+            <a class="btn btn-primary" [routerLink]="['/dashboard/patients', patient.id]">details</a>
+            <a class="btn btn-success ms-1" [routerLink]="['/dashboard/patients/appointments', patient.id]">Appointments</a>
           </td>
         </tr>
       }

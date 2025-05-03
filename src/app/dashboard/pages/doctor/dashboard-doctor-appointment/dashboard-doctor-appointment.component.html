@@ -1,0 +1,38 @@
+<h5 class="card-title">Doctors List</h5>
+<div class="table-responsive">
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Doctor Name</th>
+        <th>Date</th>
+        <th>Start</th>
+        <th>End</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (appointment of doctorAppointments; track appointment.id) {
+        <tr>
+          <td>{{ doctorAppointments.indexOf(appointment) + 1 }}</td>
+          <td><a [routerLink]="['/dashboard/patients', appointment.patientId]">{{ appointment.patientFullName }}</a></td>
+          <td>{{ appointment.appointmentDate }}</td>
+          <td>{{ appointment.startTime }}</td>
+          <td>{{ appointment.endTime }}</td>
+          <td>
+            <span class="btn"
+                  [ngClass]="{
+                    'btn-warning': appointment.status === 'Pending',
+                    'btn-success': appointment.status === 'Complete',
+                    'btn-danger': appointment.status === 'Canceled'
+                  }">
+              {{ appointment.status }}
+            </span>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+

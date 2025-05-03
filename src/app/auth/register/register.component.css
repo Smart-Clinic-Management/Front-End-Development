@@ -7,7 +7,9 @@
   align-items: center;
   justify-content: center;
 }
-
+.text-danger{
+  color: red;
+}
 .register-wrapper {
   background-color: white;
   box-shadow: 0 0 30px rgba(0,0,0,0.05);

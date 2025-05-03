@@ -37,4 +37,8 @@ export class DoctorService {
     const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}` ;    
     return this.http.get<{ data: DoctorSchedual}>(`${this.baseUrl}/schedule/?id=${doctorId}&startDate=${date}`);
   }
+
+  GetDoctorSchedule(doctorId:number){
+    return this.http.get<{ data: any[]}>(`https://localhost:7047/api/DoctorSchedule/GetByDoctor/${doctorId}`);
+  }
 }

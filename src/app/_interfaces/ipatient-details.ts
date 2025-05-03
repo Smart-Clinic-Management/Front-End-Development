@@ -3,8 +3,8 @@ export interface IpatientDetails {
   lastName: string;
   userEmail: string;
   userPhoneNumber: string;
-  birthDate: string;
+  age: number;
   address: string;
-  image: string | null;
+  image: File | string | null;
   medicalHistory: string | null;
 }
