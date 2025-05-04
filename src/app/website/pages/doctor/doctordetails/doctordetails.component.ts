@@ -46,8 +46,7 @@ export class DoctordetailsComponent {
             this.doctorAppintment.availableSchedule[0].day;
           // console.log(this.doctorAppintment.availableSchedule[0].day);
           this.isLoading = false;
-
-          console.log(this.doctorAppintment.availableSchedule);
+          // console.log(this.doctorAppintment.availableSchedule);
         });
       // this.doctorId = +; // + converts string to number
     });

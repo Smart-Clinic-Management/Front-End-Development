@@ -69,7 +69,11 @@
         class="slot-btn"
         [ngClass]="{ active: item2.isAvailable }"
       >
-        {{ item2.time }}
+      <!-- @if ( item2.time.split(':')[0] > 12) {
+        <span>item2.time.split(':')[0]</span>
+      } -->
+        {{item2.time}}
+       
       </button>
       }
     </div>
