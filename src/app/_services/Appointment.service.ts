@@ -14,22 +14,18 @@ export class AppointmentService {
 
   GetPatientAppointment(id: string) {
     return this.http.get<IPatientAppointment>(
-      this.baseUrl + '/GetPatientAppointments/' + id
+      this.baseUrl + '/GetPatientAppointments'
     );
   }
 
   GetDoctorAppointment(id: string) {
     return this.http.get<IDoctorAppointments>(
-      this.baseUrl + '/GetDoctorAppointments/' + id
+      this.baseUrl + '/GetDoctorAppointments'
     );
   }
   
   CreateAppointment(appointmet: IAppointmentRequest) {
-    return this.http.post(this.baseUrl, appointmet, {
-      headers: {
-        Authorization: 'Bearer ' + localStorage.getItem('token'),
-      },
-    });
+    return this.http.post(this.baseUrl, appointmet);
   }
 
   GetPatientAppointmentD(id:number){
