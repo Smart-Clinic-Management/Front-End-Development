@@ -1,0 +1,31 @@
+.hero {
+  background: linear-gradient(to right, #0181f5 0%, #5db2ff 100%);
+  padding: 20px 0;
+  margin: 20px 0;
+}
+.hero h1 {
+  font-size: 3rem;
+  color: whitesmoke;
+}
+
+.section-title {
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: #1e90ff;
+}
+.fade-in {
+opacity: 0;
+transform: translateY(20px);
+animation: fadeInUp 1s ease-out forwards;
+}
+
+.fade-in-delay {
+animation-delay: 0.5s;
+}
+
+@keyframes fadeInUp {
+to {
+  opacity: 1;
+  transform: translateY(0);
+}
+}

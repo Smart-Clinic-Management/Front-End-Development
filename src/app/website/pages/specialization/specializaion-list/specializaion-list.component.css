@@ -3,3 +3,40 @@
   height: 200px;
   object-fit: cover;
 }
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.8s ease forwards;
+}
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.fade-in-delay {
+  animation-delay: 0.2s;
+}
+.specialty-card {
+  transition: transform 0.3s;
+  cursor: pointer;
+}
+.specialty-card:hover {
+  transform: translateY(-5px);
+}
+
+.specialty-img-container {
+  height: 220px;
+  overflow: hidden;
+  position: relative;
+}
+.specialty-img-container img {
+  transition: transform 0.4s ease;
+}
+.specialty-card:hover .specialty-img-container img {
+  transform: scale(1.1);
+}
+
+.object-fit-cover {
+  object-fit: cover;
+}
