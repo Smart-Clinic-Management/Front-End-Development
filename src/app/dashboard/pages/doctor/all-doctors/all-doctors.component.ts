@@ -14,34 +14,34 @@ export class AllDoctorsComponent implements OnInit{
   doctors: IDoctorListItem[] = [];
   doctorService = inject(DoctorService);
 
-  constructor() { }
+  // constructor() { }
 
   ngOnInit(): void {
-    this.loadDoctors();
+    // this.loadDoctors();
   }
 
-  loadDoctors() {
-    this.doctorService.getAllDoctors().subscribe(
-      (data) => {
-        this.doctors = data?.data ?? [];
-        console.log('Doctors:', this.doctors);
-      },
-      (error) => {
-        console.error('Error fetching doctors:', error);
-      }
-    );
-  }
+  // // loadDoctors() {
+  // //   this.doctorService.getAllDoctors().subscribe(
+  // //     (data) => {
+  // //       this.doctors = data?.data ?? [];
+  // //       console.log('Doctors:', this.doctors);
+  // //     },
+  // //     (error) => {
+  // //       console.error('Error fetching doctors:', error);
+  // //     }
+  // //   );
+  // // }
 
-  confirmDelete(id: number) {
-    if (confirm('Are you sure you want to delete this doctor?')) {
-      this.doctorService.deleteDoctor(id).subscribe({
-        next: () => {
-          this.loadDoctors();
-        },
-        error: (err) => {
-          console.error('Error deleting doctor:', err);
-        }
-      });
-    }
-  }
+  // confirmDelete(id: number) {
+  //   if (confirm('Are you sure you want to delete this doctor?')) {
+  //     this.doctorService.deleteDoctor(id).subscribe({
+  //       next: () => {
+  //         this.loadDoctors();
+  //       },
+  //       error: (err) => {
+  //         console.error('Error deleting doctor:', err);
+  //       }
+  //     });
+  //   }
+  // }
 }

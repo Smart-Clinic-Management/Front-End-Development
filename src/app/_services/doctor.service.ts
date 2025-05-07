@@ -4,16 +4,23 @@ import { Observable } from 'rxjs';
 import { IDoctorListItem } from '../_interfaces/idoctor-list-item';
 import { IDoctorDetails } from '../_interfaces/idoctor-details';
 import { DoctorSchedual } from '../_interfaces/DoctorSchedual';
+import { PaginationResponse } from '../_interfaces/response/PaginationResponse';
+import { AllDoctorsPagination } from '../_interfaces/response/Doctor/AllDoctorsPagination';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DoctorService {
   private baseUrl = 'https://localhost:7047/api/doctors';
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  getAllDoctors(): Observable<{ data: IDoctorListItem[] }> {
-    return this.http.get<{ data: IDoctorListItem[] }>(`${this.baseUrl}/GetAll`);
+  getAllDoctors(params:string) {
+    
+    console.log(params);
+    
+    return this.http.get<{ data: PaginationResponse<AllDoctorsPagination>}>(
+      `${this.baseUrl}?${params}`
+    );
   }
 
   getDoctorDetails(id: number): Observable<{ data: IDoctorDetails }> {
@@ -32,15 +39,21 @@ export class DoctorService {
     return this.http.delete(`${this.baseUrl}/${id}`);
   }
 
-  GetDoctorWithAppointments(doctorId:number){
+  GetDoctorWithAppointments(doctorId: number) {
     const current = new Date();
-    const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}` ; 
+    const date = `${current.getDate()}/${
+      current.getMonth() + 1
+    }/${current.getFullYear()}`;
     console.log(date);
-       
-    return this.http.get<{ data: DoctorSchedual}>(`${this.baseUrl}/schedule/?id=${doctorId}&startDate=${date}`);
+
+    return this.http.get<{ data: DoctorSchedual }>(
+      `${this.baseUrl}/schedule/?id=${doctorId}&startDate=${date}`
+    );
   }
 
-  GetDoctorSchedule(doctorId:number){
-    return this.http.get<{ data: any[]}>(`https://localhost:7047/api/DoctorSchedule/GetByDoctor/${doctorId}`);
+  GetDoctorSchedule(doctorId: number) {
+    return this.http.get<{ data: any[] }>(
+      `https://localhost:7047/api/DoctorSchedule/GetByDoctor/${doctorId}`
+    );
   }
 }

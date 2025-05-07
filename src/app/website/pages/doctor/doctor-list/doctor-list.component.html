@@ -1,15 +1,15 @@
-  <!-- bradcam_area_start  -->
-  <div class="bradcam_area breadcam_bg_2 bradcam_overlay">
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="bradcam_text">
-                    <h3>Doctors</h3>
-                    <p><a href="index.html">Home /</a> Doctors</p>
-                </div>
-            </div>
+<!-- bradcam_area_start  -->
+<div class="bradcam_area breadcam_bg_2 bradcam_overlay">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-12">
+        <div class="bradcam_text">
+          <h3>Doctors</h3>
+          <p><a href="index.html">Home /</a> Doctors</p>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 <!-- bradcam_area_end  -->
 <!-- expert_doctors_area_start -->
@@ -17,20 +17,133 @@
   <div class="container">
     <div class="row">
       <div class="col-xl-12">
-          <div class="section_title text-center mb-55">
-              <h3>Our Doctors</h3>
-          </div>
+        <div class="section_title text-center mb-55">
+          <h3>Our Doctors</h3>
+        </div>
       </div>
-  </div>
-      <div class="row">
-        @for (doctor of doctors; track $index) {
-          <div class="col-md-6 col-lg-3">
-            <a [routerLink]="['/doctor' , doctor.id]">
+    </div>
+    <div class="row">
+      <div style="background-color: rgb(238, 238, 238);padding: 2rem 1rem; border-radius: 10px;" class="col-lg-4">
+        <div  style="height: 100%; ">
+          <h3 class="d-flex justify-content-between">
+            Filters
+            <span style="font-size: 14px; color: rgb(194, 194, 194)"
+              >
+              <button (click)="clearFilters()" style="color: red;" class="btn ">
+                Clear 
+              </button> 
+              ({{ doctors.total }})
+              </span
+            >
+          </h3>
+          <div class="d-flex">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Doctor Name"
+              [ngStyle]="{
+                border:
+                  doctorName.errors && doctorName.touched && '1px solid red'
+              }"
+              [formControl]="doctorName"
+            />
+
+            <button (click)="SearchDoctorName()" style="background-color:#0d6efd ;color: #fff;  " class="btn">
+              <i>Search</i>
+            </button>
+          </div>
+          <hr style="margin: 2rem 0" />
+          <div>
+            <div class="dropdown mb-3">
+              <button
+                class="btn btn-secondary dropdown-toggle"
+                type="button"
+                id="ageOrderDropdown"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Order by Age
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="ageOrderDropdown">
+                <li>
+                  <button (click)="orderBtn(0)" class="dropdown-item btn">
+                    Age: Low to High
+                  </button>
+                </li>
+                <li>
+                  <button (click)="orderBtn(1)" class="dropdown-item btn">
+                    Age: High to Low
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <hr style="margin: 2rem 0" />
+        </div>
+      </div>
+      <div class="col-lg-8 position-relative">
+        @if ( isLoading == true ) {
+        <div
+          style="
+            background-color: rgba(0, 0, 0, 0.596);
+            z-index: 9999;
+            position: absolute;
+            width: 100%;
+            min-height: 100%;
+          "
+          class="top-50 start-50 h-1 d-flex justify-content-center"
+        >
+          <span style="padding-top: 2rem;color: #fff;">Loading...</span>
+        </div>
+        }
+
+        <div class="row">
+          @for (doctor of doctors.data; track $index) {
+          <div class="col-md-6 col-lg-6">
+            <a [routerLink]="['/doctor', doctor.id]">
               <app-doctor [doctor]="doctor"></app-doctor>
             </a>
           </div>
-        }
+          } @empty {
+          <div
+            style="
+              background-color: rgb(224, 224, 224);
+              width: 100%;
+              text-align: center;
+              padding: 2rem;
+              margin-bottom: 3rem;
+            "
+          >
+            <div class="">Empty</div>
+          </div>
+          }
+
+          <nav
+            style="width: 100%"
+            class="d-flex align-items-center justify-content-center"
+            aria-label="Page navigation"
+          >
+            <ul class="pagination">
+              <li class="page-item disabled">
+                <a class="page-link" href="#">Previous</a>
+              </li>
+              @for (item of [].constructor(doctors?.totalPages!); track $index)
+              {
+              <li class="page-item">
+                <button class="page-link" [ngClass]="{'active': (currentIndex == $index+1)}" (click)="goToPage($index + 1)">
+                  {{ $index + 1 }}
+                </button>
+              </li>
+              }
+              <!-- <li class="page-item"><a class="page-link" href="#">2</a></li> -->
+              <!-- <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+              <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+          </nav>
+        </div>
       </div>
+    </div>
   </div>
 </div>
 <!-- expert_doctors_area_end -->
