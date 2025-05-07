@@ -33,6 +33,8 @@ import { PatientDetailsComponent } from './dashboard/pages/patient/patient-detai
 import { DashboardPatientAppointmentComponent } from './dashboard/pages/patient/dashboard-patient-appointment/dashboard-patient-appointment.component';
 import { DashboardDoctorAppointmentComponent } from './dashboard/pages/doctor/dashboard-doctor-appointment/dashboard-doctor-appointment.component';
 import { CreateScheduleComponent } from './dashboard/pages/schedule/create-schedule/create-schedule.component';
+import { AboutComponent } from './website/pages/about/about.component';
+import { ContactComponent } from './website/pages/contact/contact.component';
 
 export const routes: Routes = [
   {
@@ -40,6 +42,8 @@ export const routes: Routes = [
     component: WebsiteLayoutComponent,
     children: [
       { path: '', component: WebsiteHomeComponent },
+      {path: 'about', component: AboutComponent},
+      {path: 'contact', component: ContactComponent},
       { path: 'doctors', component: DoctorListComponent },
       { path: 'doctor/:id', component: DoctordetailsComponent },
       { path: 'specializaions', component: SpecializaionListComponent },
