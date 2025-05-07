@@ -10,5 +10,5 @@
 }
 .nav-dropdownLink:hover{
     color: #000 !important;
-    border: none !important;
+    /* border: none !important; */
 }

@@ -722,7 +722,7 @@ h3 {
 .header-area .main-header-area .Appointment .book_btn a:hover {
   background: #fff;
   color: #009DFF;
-  border: 1px solid #009DFF;
+  /* border: 1px solid #009DFF; */
 }
 
 /* line 104, C:/Users/SPN Graphics/Desktop/CL September/210 Medical/HTML/scss/_header.scss */
