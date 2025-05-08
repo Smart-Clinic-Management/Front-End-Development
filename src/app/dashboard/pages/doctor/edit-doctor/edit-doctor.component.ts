@@ -71,14 +71,14 @@ export class EditDoctorComponent {
   }
 
   loadSpecializations() {
-    this.specializationService.getAllSpecialization().subscribe({
-      next: (res) => {
-        this.specializations = res.data;
-      },
-      error: (err) => {
-        console.error('Error loading specializations:', err);
-      }
-    });
+    // this.specializationService.getAllSpecialization().subscribe({
+    //   next: (res) => {
+    //     this.specializations = res.data;
+    //   },
+    //   error: (err) => {
+    //     console.error('Error loading specializations:', err);
+    //   }
+    // });
   }
 
   onFileChange(event: any) {

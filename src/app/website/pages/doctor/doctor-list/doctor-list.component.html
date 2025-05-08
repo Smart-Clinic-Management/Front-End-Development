@@ -80,6 +80,17 @@
           </div>
 
           <hr style="margin: 2rem 0" />
+          <div class="">
+            <h5>Specializations</h5>
+
+            <ul style="margin-top: 1rem;">
+              <li *ngFor="let item of Specializations">
+                <input (change)="SpecSelection($event)" [value]="item.name" name="Specialization" type="radio" [id]="item.name">
+                <label [for]="item.name" style="margin-left: 0.5rem;">{{item.name}}</label> 
+              </li>
+            </ul>
+
+          </div>
         </div>
       </div>
       <div class="col-lg-8 position-relative">
@@ -98,7 +109,7 @@
         </div>
         }
 
-        <div class="row">
+        <div style="padding: 0 2rem;" class="row">
           @for (doctor of doctors.data; track $index) {
           <div class="col-md-6 col-lg-6">
             <a [routerLink]="['/doctor', doctor.id]">

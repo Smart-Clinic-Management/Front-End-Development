@@ -13,6 +13,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { SpecializationService } from '../../../../_services/specialization.service';
+import { AllSpecializations } from '../../../../_interfaces/response/Specialization/AllSpecializations';
 
 @Component({
   selector: 'app-doctor-list',
@@ -22,12 +24,13 @@ import { CommonModule } from '@angular/common';
 })
 export class DoctorListComponent implements OnInit {
   doctorService = inject(DoctorService);
+  SpecializationService = inject(SpecializationService);
 
   doctors!: PaginationResponse<AllDoctorsPagination>;
-
+  Specializations!:AllSpecializations[] ;
   isLoading: boolean = true;
   currentIndex= 1; 
-
+ 
   param = '?';
   constructor(private ActivatedRoute: ActivatedRoute, private router: Router) {}
 
@@ -42,10 +45,13 @@ export class DoctorListComponent implements OnInit {
       let doctorName = `doctorName=${params['doctorName'] ?? ''}`;
       let orderBy = `OrderBy=${params['OrderBy'] ?? ''}`;
       let IsDescending = `IsDescending=${params['IsDescending'] ?? ''}`;
+      let Specialization = `Specialization=${params['Specialization'] ?? ''}`;
+
 
       this.param = this.param.concat(pageIndex);
       this.param = this.param.concat('&', doctorName);
       this.param = params['OrderAge'] !='' ? this.param.concat('&', orderBy) : this.param;
+      this.param = params['Specialization'] !='' ? this.param.concat('&', Specialization) : this.param;
       this.param =
         params['IsDescending'] ? this.param.concat('&', IsDescending) : this.param;
 
@@ -55,7 +61,19 @@ export class DoctorListComponent implements OnInit {
       this.loadDoctors();
     });
 
-    console.log(this.isLoading);
+    this.LoadSpecialization() ;
+
+  }
+
+  LoadSpecialization(){
+    console.log(0);
+    
+    this.SpecializationService.getAllSpecializations(20).subscribe( res=> {
+      
+      this.Specializations = res.data.data ;
+      
+    } )
+
   }
 
   loadDoctors() {
@@ -127,7 +145,19 @@ export class DoctorListComponent implements OnInit {
     }
   }
 
-  clearFilters(){
+  SpecSelection(e:any){
+    this.router.navigate([], {
+      relativeTo: this.ActivatedRoute,
+      queryParams: {
+        Specialization: e.target.value
+      },
+      queryParamsHandling: 'merge',
+    });
+    
+  }
+
+  clearFilters(){ 
+    this.doctorName.setValue(" ") ;
     this.router.navigate([], {
       relativeTo: this.ActivatedRoute,
       queryParams: {},

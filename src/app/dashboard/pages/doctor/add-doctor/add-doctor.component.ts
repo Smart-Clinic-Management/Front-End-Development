@@ -80,14 +80,14 @@ export class AddDoctorComponent {
   }
 
   loadSpecializations() {
-    this.specializationService.getAllSpecialization().subscribe(
-      (data) => {
-        this.specializations = data?.data ?? [];
-        console.log('Specializations:', this.specializations);
-      },
-      (error) => {
-        console.error('Error fetching Specializations:', error);
-      }
-    );
+    // this.specializationService.getAllSpecialization().subscribe(
+    //   (data) => {
+    //     this.specializations = data?.data ?? [];
+    //     console.log('Specializations:', this.specializations);
+    //   },
+    //   (error) => {
+    //     console.error('Error fetching Specializations:', error);
+    //   }
+    // );
   }
 }
