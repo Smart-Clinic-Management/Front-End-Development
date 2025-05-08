@@ -2,6 +2,92 @@
   href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
   rel="stylesheet"
 />
+<div class="container">
+  <h1 class="col-12 text-center mb-2 header" style="margin: 10px;">Doctor Details</h1>
+
+  <div class="card shadow p-4 mb-4" style="margin: 10px; padding: 20px; border: #0181f5 solid 1px;">
+    <div class="row g-4 align-items-center" >
+
+      <div class="col-md-4 text-center">
+        <img [src]="doctorAppintment.image || 'assets/docImg.png'" alt="Doctor Image" class="doctor-img">
+      </div>
+      <div class="col-md-8">
+        <h2  style="color: #0181f5;"> <i class="bi bi-bandaid"></i> Dr. {{doctorAppintment.firstName}} {{doctorAppintment.lastName}}</h2>
+        <p><span class="info-label">Specialization:</span>{{doctorAppintment.specialization}}</p>
+        <p><span class="info-label">Email:</span>{{doctorAppintment.email}}</p>
+        <p><span class="info-label">Phone:</span> +{{doctorAppintment.phoneNumber}}</p>
+        <p><span class="info-label">Age:</span> {{doctorAppintment.age}}</p>
+        <p><span class="info-label">Address:</span> {{doctorAppintment.address}}</p>
+        <p><span class="info-label">Waiting Time:</span>{{doctorAppintment.waitingTime}}</p>
+        <p><span class="info-label">Description:</span> {{doctorAppintment.description}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion" id="scheduleAccordion">
+    <div class="accordion-item">
+      <h4 style="font-size: 1.2rem ;color:#0181f5 ; text-align: center;" class="text-uppercase text-muted mb-3 c">
+        Available Schedule
+      </h4>
+      <hr style=" margin: 0 auto; width: 50%; border: 1px solid #0181f5;">
+      <h2 class="accordion-header" id="headingOne" style="text-align: center; padding: 20px; margin: 20px;">
+        @for (item of doctorAppintment.availableSchedule; track $index) {
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#day1" aria-expanded="true" style="margin: 10px;"
+        [ngClass]="{ active: tabCurrentActiveDay === item.day }"
+        class="tab"
+        (click)="tabCurrentActiveDay = item.day">
+        {{ item.day }}
+        </button>
+      }
+      </h2>
+      <div id="day1" class="accordion-collapse collapse show" data-bs-parent="#scheduleAccordion">
+        @for (item of doctorAppintment.availableSchedule; track $index) { @if
+          (item.isAvailable) {
+        <div class="accordion-body" class="slots"
+        [ngClass]="{ active: tabCurrentActiveDay === item.day }"
+        id="tuesday">
+        @for (item2 of item.slots; track $index) {
+          <span class="badge bg-success me-2 mb-2" (click)="showLightBox = true; handleAppointment(item.day, item2.time)"
+          class="slot-btn"
+          [ngClass]="{ active: item2.isAvailable }">1{{ item2.time }}</span>
+        }
+        </div>
+      } @else {
+        <div
+        class="slots"
+        [ngClass]="{ active: tabCurrentActiveDay === item.day }"
+        id="monday"
+      >
+        <p style="color: red; padding-top: 2rem" class="not-available">
+          Not Available
+        </p>
+      </div>
+      } }
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<div *ngIf="showLightBox" class="lightbox">
+  <div (click)="showLightBox = false" class="overlay"></div>
+  <div class="content">
+    <div *ngIf="msg" style="background-color: green; color: #fff;" class="alert alert-success">{{msg}}</div>
+    <h2><i class="bi h2 bi-check"></i> Confirm Appointment</h2>
+    <p>DR. {{ doctorAppintment.firstName }} {{ doctorAppintment.lastName }}</p>
+    <p class="h3">{{ selected.day }}</p>
+    <p style="color: blue">{{ selected.date }} -- {{ selected.time }}</p>
+    <button (click)="ConfirmAppointment(doctorAppintment.specializationId)" style="background-color: blue" class="btn text-white w-100">
+      Confirm
+    </button>
+  </div>
+</div>
+
+
+<!-- <link
+  href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+  rel="stylesheet"
+/>
 <app-loader [show]="isLoading"></app-loader>
 <div style="margin: 5rem auto; min-height: 400px" class="container-fluid">
   @if (!isLoading) {
@@ -24,7 +110,7 @@
     </h6>
     <p>
       <i class="bi bi-envelope" style="margin-right: 0.6rem"></i
-      ><strong>Email:</strong> {{ doctorAppintment.userEmail }}
+      ><strong>Email:</strong> {{ doctorAppintment.email }}
     </p>
     <p>
       <i class="bi bi-geo-alt" style="margin-right: 0.6rem"></i
@@ -86,18 +172,5 @@
     } }
   </div>
   }
-</div>
+</div> -->
 
-<div *ngIf="showLightBox" class="lightbox">
-  <div (click)="showLightBox = false" class="overlay"></div>
-  <div class="content">
-    <div *ngIf="msg" style="background-color: green; color: #fff;" class="alert alert-success">{{msg}}</div>
-    <h2><i class="bi h2 bi-check"></i> Confirm Appointment</h2>
-    <p>DR. {{ doctorAppintment.firstName }} {{ doctorAppintment.lastName }}</p>
-    <p class="h3">{{ selected.day }}</p>
-    <p style="color: blue">{{ selected.date }} -- {{ selected.time }}</p>
-    <button (click)="ConfirmAppointment(doctorAppintment.specializationId)" style="background-color: blue" class="btn text-white w-100">
-      Confirm
-    </button>
-  </div>
-</div>
