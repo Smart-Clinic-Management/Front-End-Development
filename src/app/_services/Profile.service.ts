@@ -7,17 +7,17 @@ import { IPatientProfile } from '../_interfaces/IPaatientProfile';
   providedIn: 'root',
 })
 export class ProfileService {
-  private baseUrl = 'https://localhost:7047/api/auth/';
+  private baseUrl = 'https://localhost:7047/api/Auth/';
   constructor(private http: HttpClient) {}
 
   Token: string = localStorage.getItem('token')!;
 
   GetDoctorProfile() {
-    return this.http.get<IDoctorProfile>(this.baseUrl + 'profile' );
+    return this.http.get<IDoctorProfile>(this.baseUrl + 'Profile' );
   }
-  
+
   GetPatientProfile() {
-    return this.http.get<IPatientProfile>(this.baseUrl + 'profile');
+    return this.http.get<IPatientProfile>(this.baseUrl + 'Profile');
   }
 
   UpdateProfileImg(formData: FormData) {

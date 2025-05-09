@@ -3,42 +3,62 @@
     <h1>Doctor's Appointments</h1>
     <p>Manage Patient Appointments</p>
   </header>
+<select class="selected" [(ngModel)]="selectedStatus" (change)="filterAppointments()">
+  <option value="All">All</option>
+  <option value="Pending">Pending</option>
+  <option value="Completed">Completed</option>
+  <option value="Canceled">Canceled</option>
+</select>
   <div style="margin-top: 3rem" class="row">
-    @if ( !isLoading ) { @for (item of
-    doctorAppointments?.data; track $index) {
-    <div class="col-lg-4 col-md-6 col-12 mb-4">
-      <div class="card shadow-sm">
-        <div class="card-body">
-          <h5 class="card-title">{{item.patientFullName}}</h5>
-          <hr />
-          <div class="card-text">
-            <p><strong>Date:</strong> {{item.appointmentDate}}</p>
-            <p><strong>Time:</strong> {{item.startTime}} - {{item.endTime}}</p>
-            <p><strong>Status:</strong> {{item.status}}</p>
-          </div>
-          <div class="d-flex justify-content-between">
-            <button *ngIf="item.status.toLowerCase() == 'pending'" class="btn " style="background-color: green; color: #fff;">Accept</button>
-            <button *ngIf="item.status.toLowerCase() == 'pending'" class="btn " style="background-color: red; color: #ffff;">Cancel</button>
+    <!-- Loading state -->
+    <div *ngIf="isLoading" style="width: 100%; text-align: center; padding: 3rem 0;">
+      Loading...
+    </div>
+
+    <!-- When loaded and appointments exist -->
+    <ng-container *ngIf="!isLoading && appointments.length > 0">
+      <div *ngFor="let item of filteredAppointments" class="col-lg-4 col-md-6 col-12 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">{{ item.patientFullName }}</h5>
+            <hr />
+            <div class="card-text">
+              <p><strong>Date:</strong> {{ item.appointmentDate }}</p>
+              <p><strong>Time:</strong> {{ item.startTime }} - {{ item.endTime }}</p>
+              <p><strong>Status:</strong> {{ item.status }}</p>
+            </div>
+<div class="" style="display: flex; justify-content: space-around;">
+<div *ngIf="item.status.toLowerCase() === 'pending'" class="" style="display: flex; justify-content: space-around;">
+  <button
+    class="btn"
+    style="background-color: rgb(2, 110, 2); width: 50%; color: whitesmoke; padding: 10px; margin: 10px;"
+    (click)="changeAppointmentStatus(item.id, 'Completed')"
+  >
+    Completed
+  </button>
+
+  <button
+    class="btn"
+    style="background-color: rgb(203, 36, 36); width: 50%; color: whitesmoke; padding: 10px; margin: 10px;"
+    (click)="changeAppointmentStatus(item.id, 'Canceled')"
+  >
+    Canceled
+  </button>
+</div>
+              <!-- <button *ngIf="item.status.toLowerCase() === 'pending'" class="btn" style="background-color: rgb(2, 110, 2);width: 35%; color: whitesmoke; padding: 10px; margin: 5px;">Completed</button>
+              <button *ngIf="item.status.toLowerCase() === 'pending'" class="btn" style="background-color: rgb(220, 198, 31);width: 35%; color: whitesmoke; padding: 10px; margin: 5px;">Pending</button>
+              <button *ngIf="item.status.toLowerCase() === 'pending'" class="btn" style="background-color: rgb(203, 36, 36); width: 35%;  color: whitesmoke; padding: 10px; margin: 5px;">Canceled</button> -->
+</div>
           </div>
         </div>
       </div>
-    </div>
-    }@empty {
-    <div
-      style="
-        text-align: center;
-        width: 100%;
-        font-size: 2rem;
-        font-weight: bold;
-      "
-    >
-      Has No Appointments Yet !
+    </ng-container>
+
+    <!-- When loaded and no appointments -->
+    <div *ngIf="!isLoading && appointments.length === 0"
+         style="text-align: center; width: 100%; font-size: 2rem; font-weight: bold;">
+      Has No Appointments Yet!
       <p style="margin-top: 0.8rem">Wait for more</p>
     </div>
-    } }@else {
-      <div style="width: 100%; text-align: center;padding: 3rem 0;">
-        Loading....
-      </div>
-    }
   </div>
 </div>

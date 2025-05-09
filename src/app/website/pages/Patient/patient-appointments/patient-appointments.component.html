@@ -1,11 +1,11 @@
 
 <div class="container my-5">
   <header class="header text-white text-center py-4">
-    <h1>My Appointments</h1>
+    <h1 style="color: whitesmoke;">My Appointments</h1>
   </header>
-  <div *ngIf="appointments?.data?.length! > 0; else noAppointments">
+  <div *ngIf="appointments?.length! > 0; else noAppointments">
     <div class="row">
-      <div class="col-lg-4 col-md-6 col-12 mb-4" *ngFor="let appt of appointments?.data; let i = index">
+      <div class="col-lg-4 col-md-6 col-12 mb-4" *ngFor="let appt of appointments; let i = index">
         <div class="appointment-card">
           <h3 class="doctor-title">DR. {{appt.doctorFullName}}</h3>
           <p><strong>Appointment Date:</strong> {{appt.appointmentDate}}</p>
@@ -15,9 +15,9 @@
           <p><strong>End Time:</strong>{{appt.endTime}}</p>
           <p class="status">
             <strong>Status:</strong>
-            <span class="badge bg-warning text-dark" *ngIf="appt.status === 'Pending'">{{ appt.status }}</span>
-            <span class="badge bg-success" *ngIf="appt.status === 'Approved'">{{ appt.status }}</span>
-            <span class="badge bg-danger" *ngIf="appt.status === 'Rejected'">{{ appt.status }}</span>
+            <span class="badge bg-warning text-dark" style="background-color: rgba(218, 218, 10, 0.895); color: whitesmoke; padding: 5px; border-radius: 5px;" *ngIf="appt.status === 'Pending'">{{ appt.status }}</span>
+            <span class="badge bg-success" style="background-color: rgb(2, 110, 2); color: whitesmoke; padding: 5px; border-radius: 5px;" *ngIf="appt.status === 'Completed'">{{ appt.status }}</span>
+            <span class="badge bg-danger" style="background-color: rgb(189, 57, 57); color: whitesmoke; padding: 5px; border-radius: 5px;" *ngIf="appt.status === 'Canceled'">{{ appt.status }}</span>
           </p>
         </div>
       </div>
