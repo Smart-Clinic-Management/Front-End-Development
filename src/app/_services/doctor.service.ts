@@ -42,8 +42,10 @@ export class DoctorService {
   GetDoctorWithAppointments(doctorId: number) {
     const current = new Date();
     const date = `${current.getFullYear()}-${
-      current.getMonth() + 1
-    }-${current.getDate()}`;
+      current.getMonth() < 10 ? '0'+(current.getMonth() + 1) : (current.getMonth() + 1) 
+    }-${
+      current.getDate() < 10 ? '0'+(current.getDate()) : (current.getDate()) 
+    }`;
     console.log(date);
 // Doctors/schedule/slots
 
