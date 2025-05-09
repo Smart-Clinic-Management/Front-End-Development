@@ -1,22 +1,32 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { DoctorComponent } from '../doctor/doctor.component';
-import { ISpecialization } from '../../../../_interfaces/ispecialization';
+import {
+  ISpecialization,
+  ISpecializationDoctor,
+} from '../../../../_interfaces/ispecialization';
 import { SpecializationService } from '../../../../_services/specialization.service';
+import { ISpecializationDoctors } from '../../../../_interfaces/response/Specialization/ISpecializationDoctors';
 
 @Component({
   selector: 'app-specialization-doctors',
   imports: [RouterLink, DoctorComponent],
   templateUrl: './specialization-doctors.component.html',
-  styleUrl: './specialization-doctors.component.css'
+  styleUrl: './specialization-doctors.component.css',
 })
 export class SpecializationDoctorsComponent {
   specializationId: number | null = null;
-  specializationDetails: any | null = null;
-  constructor(private specializationService: SpecializationService,private route: ActivatedRoute) { }
+  specializationDetails!: ISpecializationDoctors;
+
+  isLoading = true;
+
+  constructor(
+    private specializationService: SpecializationService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
+    this.route.paramMap.subscribe((params) => {
       const idParam = params.get('id');
       if (idParam) {
         this.specializationId = +idParam;
@@ -26,14 +36,17 @@ export class SpecializationDoctorsComponent {
   }
 
   loadSpecializationDetails(id: number) {
+    this.isLoading = true;
     if (id) {
-      this.specializationService.getSpecializationDetails(id).subscribe(
+      this.specializationService.getSpecializationDoctors(id).subscribe(
         (data) => {
-          this.specializationDetails = data?.data ?? null;
-          console.log('Specialization:', this.specializationDetails);
+          this.specializationDetails = data.data;
+          this.isLoading = false;
+          // console.log('Specialization:', this.specializationDetails);
         },
         (error) => {
-          console.error('Error fetching doctor details:', error);
+          this.isLoading = false;
+          // console.error('Error fetching doctor details:', error);
         }
       );
     }

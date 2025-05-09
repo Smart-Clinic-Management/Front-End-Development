@@ -1,85 +1,131 @@
-
-  <div class="bradcam_area breadcam_bg_2 bradcam_overlay">
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="bradcam_text">
-                    <h3>Specializations</h3>
-                    <p><a>Home /</a> Specializations</p>
-                </div>
-            </div>
+<div class="bradcam_area breadcam_bg_2 bradcam_overlay">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-12">
+        <div class="bradcam_text">
+          <h3>Specializations</h3>
+          <p><a>Home /</a> Specializations</p>
         </div>
+      </div>
     </div>
-</div>
-    <div class="service_area">
-      <div class="container p-0">
-          <div class="row no-gutters">
-              <div class="col-xl-4 col-md-4">
-                  <div class="single_service">
-                      <div class="icon">
-                          <i class="flaticon-electrocardiogram"></i>
-                      </div>
-                      <h3>Hospitality</h3>
-                      <p>Clinical excellence must be the priority for any health care service provider.</p>
-                      <a href="#" class="boxed-btn3-white">Apply For a Bed</a>
-                  </div>
-              </div>
-              <div class="col-xl-4 col-md-4">
-                  <div class="single_service">
-                      <div class="icon">
-                          <i class="flaticon-emergency-call"></i>
-                      </div>
-                      <h3>Emergency Care</h3>
-                      <p>Clinical excellence must be the priority for any health care service provider.</p>
-                      <a href="#" class="boxed-btn3-white">+10 672 356 3567</a>
-                  </div>
-              </div>
-              <div class="col-xl-4 col-md-4">
-                  <div class="single_service">
-                      <div class="icon">
-                          <i class="flaticon-first-aid-kit"></i>
-                      </div>
-                      <h3>Chamber Service</h3>
-                      <p>Clinical excellence must be the priority for any health care service provider.</p>
-                      <a href="#" class="boxed-btn3-white">Make an Appointment</a>
-                  </div>
-              </div>
-          </div>
-      </div>
   </div>
-
-
-<section style="margin: 20px; padding: 20px;">
-      <div class="container">
-        <h2 class="text-center mb-5 fw-bold fade-in">Our Specializations</h2>
-
-        <div class="row g-4">
-          <div class="col-md-6 col-lg-4 fade-in">
-            @for (specialization of specializations; track specialization.id) {
-            <div class="card specialty-card shadow-sm overflow-hidden h-100" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); border: lightblue 1px solid;">
-              <div class="specialty-img-container">
-                @if(specialization.image !== null){
-                  <img [src]="specialization.image" alt="">
-                }@else{
-                  <img src="assets/website/img/1464093260_med.webp" alt="">
-                }
-              </div>
-              <div class="card-body text-center" style="padding: 5px; margin: 5px;">
-                <h4 class="fw-bold mb-2" style="color: #0181f5; border: 1px lightblue solid; padding: 10px; width: 50%; margin: auto; border-radius: 10px;">{{ specialization.name }}</h4>
-                <p style="color: gray;">
-                  {{ specialization.description }}
-                </p>
-              </div>
-            </div>
-          }
+</div>
+<div class="service_area">
+  <div class="container p-0">
+    <div class="row no-gutters">
+      <div class="col-lg-4 col-md-4">
+        <div class="single_service">
+          <div class="icon">
+            <i class="flaticon-electrocardiogram"></i>
           </div>
-
+          <h3>Hospitality</h3>
+          <p>
+            Clinical excellence must be the priority for any health care service
+            provider.
+          </p>
+          <a href="#" class="boxed-btn3-white">Apply For a Bed</a>
         </div>
       </div>
-    </section>
+      <div class="col-xl-4 col-md-4">
+        <div class="single_service">
+          <div class="icon">
+            <i class="flaticon-emergency-call"></i>
+          </div>
+          <h3>Emergency Care</h3>
+          <p>
+            Clinical excellence must be the priority for any health care service
+            provider.
+          </p>
+          <a href="#" class="boxed-btn3-white">+10 672 356 3567</a>
+        </div>
+      </div>
+      <div class="col-xl-4 col-md-4">
+        <div class="single_service">
+          <div class="icon">
+            <i class="flaticon-first-aid-kit"></i>
+          </div>
+          <h3>Chamber Service</h3>
+          <p>
+            Clinical excellence must be the priority for any health care service
+            provider.
+          </p>
+          <a href="#" class="boxed-btn3-white">Make an Appointment</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
+<section style="margin: 20px; padding: 20px">
+  <div class="container">
+    <h2 style="margin: 3rem 0 5rem" class="text-center fw-bold fade-in">
+      Our Specializations
+    </h2>
 
-
-
-
-
+    @if (isLoading) {
+    <div
+    class="text-center"
+      style="font-weight: bold; font-size: 1.2rem;padding: 5rem;"
+    >loading...</div>
+    }@else {
+    <div class="row">
+      @for (specialization of specializations.data; track specialization.id) {
+      <div style="padding: 2rem" class="col-lg-4 fade-in">
+        <a
+          [routerLink]="['/specializaion/doctors', specialization.id]"
+          class="card specialty-card shadow-sm overflow-hidden h-100"
+          style="
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border: lightblue 1px solid;
+            /* background-color: red; */
+            height: 100%;
+          "
+        >
+          <div class="specialty-img-container">
+            @if(specialization.image !== null){
+            <img [src]="specialization.image" alt="" />
+            }@else{
+            <img src="assets/website/img/1464093260_med.webp" alt="" />
+            }
+          </div>
+          <div class="card-body" style="padding: 5px; margin: 5px">
+            <h4
+              class="fw-bold"
+              style="
+                color: #0181f5;
+                /* background-color: red; */
+                padding: 0.3rem 1rem;
+                border-radius: 10px;
+              "
+            >
+              {{ specialization.name }}
+            </h4>
+            <p style="color: gray ;padding: 0.3rem 1rem;">
+              {{ specialization.description }}
+            </p>
+          </div>
+        </a>
+      </div>
+      } @if ( specializations.totalPages > 1 ) {}
+      <div
+        style="width: 100%; margin: 3rem 0"
+        class="d-flex justify-content-center align-items-center"
+      >
+        @for (item of [].constructor(specializations.totalPages); track $index)
+        {
+        <span style="padding: 0 0.2rem">
+          <button
+            (click)="NextPage($index + 1)"
+            [ngClass]="{ activePag: currentPageIndex == $index + 1 }"
+            class="btn"
+          >
+            {{ $index + 1 }}
+          </button>
+        </span>
+        }
+      </div>
+    </div>
+    }
+  </div>
+</section>
