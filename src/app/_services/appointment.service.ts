@@ -25,6 +25,10 @@ export class AppointmentService {
   }
 
   CreateAppointment(appointmet: IAppointmentRequest) {
+
+
+    console.log(appointmet);
+    
     return this.http.post(this.baseUrl, appointmet, {
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('token'),

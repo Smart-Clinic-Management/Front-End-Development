@@ -41,10 +41,11 @@ export class DoctorService {
 
   GetDoctorWithAppointments(doctorId: number) {
     const current = new Date();
-    const date = `${current.getDate()}/${
+    const date = `${current.getFullYear()}-${
       current.getMonth() + 1
-    }/${current.getFullYear()}`;
+    }-${current.getDate()}`;
     console.log(date);
+// Doctors/schedule/slots
 
     return this.http.get<{ data: DoctorSchedual }>(
       `${this.baseUrl}/schedule/slots?DoctorId=${doctorId}&startDate=${date}`
