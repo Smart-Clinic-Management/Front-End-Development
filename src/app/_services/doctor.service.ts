@@ -15,9 +15,9 @@ export class DoctorService {
   constructor(private http: HttpClient) {}
 
   getAllDoctors(params:string) {
-    
+
     console.log(params);
-    
+
     return this.http.get<{ data: PaginationResponse<AllDoctorsPagination>}>(
       `${this.baseUrl}?${params}`
     );
@@ -47,7 +47,7 @@ export class DoctorService {
     console.log(date);
 
     return this.http.get<{ data: DoctorSchedual }>(
-      `${this.baseUrl}/schedule/?id=${doctorId}&startDate=${date}`
+      `${this.baseUrl}/schedule/slots?DoctorId=${doctorId}&startDate=${date}`
     );
   }
 

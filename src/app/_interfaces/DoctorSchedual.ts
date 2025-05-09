@@ -4,8 +4,8 @@ export interface DoctorSchedual {
   age: number;
   description: string;
   address: string;
-  userEmail: string;
-  userPhoneNumber: string;
+  email: string;
+  phoneNumber: string;
   image: string;
   specialization: string;
   specializationId: string;

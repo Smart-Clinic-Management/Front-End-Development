@@ -159,3 +159,20 @@ h2 {
   border-radius: 5%;
   padding: 3rem 5rem;
 }
+.doctor-img {
+  width: 100%;
+  max-width: 200px;
+  border-radius: 20px;
+  object-fit: cover;
+}
+.header {
+  font-size: 2.5rem;
+  color: white;
+  background: linear-gradient(to right, #0181f5 0%, #5db2ff 100%);
+  padding: 10px;
+  border-radius: 40px;
+}
+.info-label {
+  font-weight: bold;
+  color: #555;
+}
