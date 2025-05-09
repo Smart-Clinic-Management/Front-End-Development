@@ -40,3 +40,8 @@
 .object-fit-cover {
   object-fit: cover;
 }
+
+.activePag{
+  background-color: blue;
+  color: #fff;
+}
