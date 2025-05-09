@@ -42,3 +42,19 @@ div .header p {
   padding: 15px;
   border-radius: 20px;
 }
+.selected{
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+  border: 1px solid lightblue;
+  transition: all 0.3s ease;
+  background: #0181f5 !important;
+  color: whitesmoke;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+.selected:hover{
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease-in-out;
+}
+
