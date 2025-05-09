@@ -114,7 +114,8 @@ h2 {
   border-radius: 8px;
   cursor: pointer;
   transition: 0.3s;
-  cursor: none;
+  cursor: auto;
+  user-select: none;
 }
 
 .slot-btn.active {

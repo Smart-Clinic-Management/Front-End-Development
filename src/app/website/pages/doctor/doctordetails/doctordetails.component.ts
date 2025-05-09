@@ -33,6 +33,7 @@ export class DoctordetailsComponent {
   selected!: SelectedAppointment;
 
   msg: string = '';
+  errorMsg = '';
 
   constructor(private route: ActivatedRoute) {}
 
@@ -44,10 +45,10 @@ export class DoctordetailsComponent {
           this.doctorAppintment = res.data;
           this.tabCurrentActiveDay =
             this.doctorAppintment.availableSchedule[0].day;
-          // console.log(this.doctorAppintment.availableSchedule[0].day);
+
           this.isLoading = false;
 
-          console.log(this.doctorAppintment.availableSchedule);
+          console.log(this.doctorAppintment);
         });
       // this.doctorId = +; // + converts string to number
     });
@@ -84,6 +85,8 @@ export class DoctordetailsComponent {
     };
   }
 
+  confirmLoad = false;
+
   ConfirmAppointment(specId: string) {
     this.route.params.subscribe((res) => {
       let confirm: IAppointmentRequest = {
@@ -96,11 +99,25 @@ export class DoctordetailsComponent {
       this.AppointmentService.CreateAppointment(confirm).subscribe(
         (res) => {
           this.msg = 'Appointment Added Successfuly';
+
+          this.route.params.subscribe((params) => {
+            this.doctorService
+              .GetDoctorWithAppointments(params['id'])
+              .subscribe((res) => {
+                this.doctorAppintment = res.data;
+                // this.tabCurrentActiveDay =
+                //   this.doctorAppintment.availableSchedule[0].day;
+                this.showLightBox =false ;
+                this.isLoading = false;
+
+                console.log(this.doctorAppintment);
+              });
+            // this.doctorId = +; // + converts string to number
+          });
         },
         (error) => {
-          this.msg = 'something went wrong try again later!';
+          this.errorMsg = 'something went wrong try again later!';
           console.log(error);
-          
         }
       );
     });
