@@ -29,6 +29,8 @@ ngOnInit(): void {
     this.AppointmentService.GetDoctorAppointments().subscribe(
     (res: IApiResponse<IDoctorPagination>) => {
       this.appointments = res.data.data;
+      console.log(this.appointments);
+      
       this.filterAppointments();
       this.isLoading = false;
     },
@@ -43,6 +45,8 @@ ngOnInit(): void {
   this.isLoading = true;
   this.AppointmentService.GetDoctorAppointments().subscribe(
     (res: IApiResponse<IDoctorPagination>) => {
+      console.log(0);
+      
       this.appointments = res.data.data;
       console.log(this.appointments); // التأكد من أن البيانات يتم تحميلها بشكل صحيح
       this.isLoading = false;
@@ -62,16 +66,19 @@ filterAppointments() {
     );
   }
 }
+
+error:string = "" ;
 changeAppointmentStatus(appointmentId: number, status: 'Completed' | 'Canceled') {
   const payload = { appointmentId, status };
 
   this.AppointmentService.updateDoctorAppointment(payload).subscribe({
     next: (res) => {
       console.log('Appointment status updated:', res);
-      this.getAppointments(); // أعيدي تحميل البيانات
+      this.getAppointments(); 
     },
     error: (err) => {
       console.error('Error updating appointment:', err);
+      this.error = "can not update for upcomming appointment"
       if (err?.error?.errors) {
         console.log('Validation Errors:', err.error.errors);
       } else {
