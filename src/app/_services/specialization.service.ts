@@ -45,7 +45,7 @@ export class SpecializationService {
   }
 
   createSpecialization(formData: FormData): Observable<any> {
-    return this.http.post(`${this.baseUrl}/Create`, formData);
+    return this.http.post(`${this.baseUrl}`, formData);
   }
 
   updateSpecialization(id: number, data: FormData) {
@@ -53,6 +53,6 @@ export class SpecializationService {
   }
 
   deleteSpecialization(id: number) {
-    return this.http.delete(`${this.baseUrl}/Delete/${id}`);
+    return this.http.delete(`${this.baseUrl}/${id}`);
   }
 }

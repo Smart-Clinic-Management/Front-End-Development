@@ -11,7 +11,7 @@
         <th>Image</th>
         <td>
           @if(specializationDetails.image !== null){
-            <img [src]="specializationDetails.image" width="90" alt="Doctor Image">
+            <img [src]="specializationDetails.image" width="90" alt="Specialization Image">
           }
         </td>
       </tr>
@@ -24,7 +24,7 @@
         <td>
           <ul>
             @for (doctor of specializationDetails.doctors; track doctor.id) {
-              <li>{{ doctor.name }}</li>
+              <li>{{ doctor.firstName }} {{ doctor.lastName }}</li>
             }
           </ul>
         </td>
@@ -34,6 +34,6 @@
 </div>
 }@else{
   <div>
-    <p>Not Found...</p>
+    <p>Loaded...</p>
   </div>
 }

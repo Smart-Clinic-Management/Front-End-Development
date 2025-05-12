@@ -1,49 +1,46 @@
-<h5 class="card-title">Patient Details</h5>
-
-<div class="table-responsive" *ngIf="patientDetails">
-  <table id="zero_config" class="table table-bordered">
-    <tbody>
-      <tr>
-        <th>First Name</th>
-        <td>{{ patientDetails.firstName }}</td>
-      </tr>
-      <tr>
-        <th>Last Name</th>
-        <td>{{ patientDetails.lastName }}</td>
-      </tr>
-      <tr>
-        <th>Email</th>
-        <td>{{ patientDetails.userEmail }}</td>
-      </tr>
-      <tr>
-        <th>Phone</th>
-        <td>{{ patientDetails.userPhoneNumber }}</td>
-      </tr>
-      <tr>
-        <th>Image</th>
-        <td>
-          @if(patientDetails.image !== null){
-            <img [src]="patientDetails.image" width="90" alt="Doctor Image">
-          }
-        </td>
-      </tr>
-      <tr>
-        <th>Address</th>
-        <td>{{ patientDetails.address }}</td>
-      </tr>
-      <tr>
-        <th>Age</th>
-        <td>{{ patientDetails.age }}</td>
-      </tr>
-      <tr>
-        <th>Medical History</th>
-        <td>{{ patientDetails.medicalHistory }}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
 @if(!patientDetails){
   <div>
-    <p>Loading patient details...</p>
+    <p>Loading doctor details...</p>
   </div>
+}@else {
+  <h5 class="card-title" style="display:flex;justify-content:space-between"><span>Patient Details</span> <button class="btn btn-primary" (click)="goToAppointments()">View Appointments</button></h5>
+    <div class="row mt-4 px-4">
+      <div class="col-12 col-md-4 d-flex">
+        <div class="card shadow w-100 h-100">
+          @if(patientDetails.image !== null){
+            <img [src]="patientDetails.image" class="card-img-top" alt="..." style="width: 100%; height: 200px; object-fit: cover;">
+          }@else {
+            <img src="assets/user.png" class="card-img-top" alt="..." style="width: 100%; height: 200px; object-fit: cover;">
+          }
+          <div class="card-body" style="text-align: center;">
+            <h5 class="card-title">{{ patientDetails.firstName }} {{ patientDetails.lastName }}</h5>
+            <h6 class="text-primary">{{ patientDetails.userPhoneNumber }}</h6>
+            <p class="card-text">{{ patientDetails.medicalHistory }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-8 d-flex">
+        <div class="card shadow w-100 h-100">
+          <div class="card-body">
+            <h3 class="card-title text-primary">General Information</h3>
+            <div style="text-align:center" class="mt-4">
+              <div class="row">
+                <h5 style="display: inline-block;" class="col-3">Email</h5>
+                <span class="col-9" style="text-align: left;">{{ patientDetails.userEmail }}</span>
+              </div>
+              <hr>
+              <div class="row">
+                <h5 style="display: inline-block;" class="col-3">Address</h5>
+                <span class="col-9" style="text-align: left;">{{ patientDetails.address }}</span>
+              </div>
+              <hr>
+              <div class="row">
+                <h5 style="display: inline-block;" class="col-3">Age</h5>
+                <span class="col-9" style="text-align: left;">{{ patientDetails.age }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 }

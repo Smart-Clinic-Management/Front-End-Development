@@ -12,10 +12,10 @@
       </tr>
     </thead>
     <tbody>
-      @for (appointment of patientAppointments; track appointment.id) {
+      @for (appointment of patientAppointments.data; track appointment.id) {
         <tr>
-          <td>{{ patientAppointments.indexOf(appointment) + 1 }}</td>
-          <td><a [routerLink]="['/dashboard/doctors/details', appointment.doctorId]">{{ appointment.doctorFullName }}</a></td>
+          <td>{{ patientAppointments.data.indexOf(appointment) + 1 }}</td>
+          <td>{{ appointment.doctorFullName }}</td>
           <td>{{ appointment.appointmentDate }}</td>
           <td>{{ appointment.startTime }}</td>
           <td>{{ appointment.endTime }}</td>
@@ -34,4 +34,15 @@
     </tbody>
   </table>
 </div>
-
+@if (patientAppointments.totalPages > 1) {
+  <div class="d-flex justify-content-center mt-3">
+    @for (page of [].constructor(patientAppointments.totalPages); track $index) {
+      <button
+        class="btn btn-sm btn-outline-primary mx-1"
+        [ngClass]="{ 'active': currentPageIndex === $index + 1 }"
+        (click)="NextPage($index + 1)">
+        {{ $index + 1 }}
+      </button>
+    }
+  </div>
+}

@@ -1,6 +1,8 @@
 export interface ISpecializationDoctor{
   id: number;
-  name: string;
+  firstName: string;
+  lastName:string;
+  image:string;
   description: string | null;
   isActive: boolean;
 }

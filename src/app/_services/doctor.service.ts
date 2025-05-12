@@ -28,7 +28,7 @@ export class DoctorService {
   }
 
   addDoctor(formData: FormData): Observable<any> {
-    return this.http.post(`${this.baseUrl}/Create`, formData);
+    return this.http.post(`${this.baseUrl}`, formData);
   }
 
   updateDoctor(id: number, formData: FormData): Observable<any> {

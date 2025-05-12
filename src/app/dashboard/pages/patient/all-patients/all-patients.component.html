@@ -1,4 +1,9 @@
 <h5 class="card-title">Patients List</h5>
+@if (isLoading) {
+  <div class="text-center p-5">
+    <strong>Loading...</strong>
+  </div>
+} @else {
 <div class="table-responsive">
   <table class="table table-striped table-bordered">
     <thead>
@@ -11,19 +16,31 @@
       </tr>
     </thead>
     <tbody>
-      @for (patient of patients; track patient.id) {
+      @for (patient of patients.data; track patient.id) {
         <tr>
-          <td>{{ patients.indexOf(patient) + 1 }}</td>
+          <td>{{ patients.data.indexOf(patient) + 1 }}</td>
           <td>{{ patient.firstName }} {{ patient.lastName }}</td>
           <td>{{ patient.userPhoneNumber }}</td>
           <td>{{ patient.age }}</td>
           <td>
             <a class="btn btn-primary" [routerLink]="['/dashboard/patients', patient.id]">details</a>
-            <a class="btn btn-success ms-1" [routerLink]="['/dashboard/patients/appointments', patient.id]">Appointments</a>
           </td>
         </tr>
       }
     </tbody>
   </table>
 </div>
+@if (patients.totalPages > 1) {
+  <div class="d-flex justify-content-center mt-3">
+    @for (page of [].constructor(patients.totalPages); track $index) {
+      <button
+        class="btn btn-sm btn-outline-primary mx-1"
+        [ngClass]="{ 'active': currentIndex === $index + 1 }"
+        (click)="goToPage($index + 1)">
+        {{ $index + 1 }}
+      </button>
+    }
+  </div>
+}
+}
 

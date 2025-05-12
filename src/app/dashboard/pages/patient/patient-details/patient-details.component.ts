@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IpatientDetails } from '../../../../_interfaces/ipatient-details';
 import { PatientService } from '../../../../_services/patient.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
 export class PatientDetailsComponent {
   patientId: number | null = null;
   patientDetails: IpatientDetails | null = null;
-  constructor(private patientService: PatientService,private route: ActivatedRoute) { }
+  constructor(private patientService: PatientService,private route: ActivatedRoute,private router: Router) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -33,9 +33,20 @@ export class PatientDetailsComponent {
           console.log('Patient:', this.patientDetails);
         },
         (error) => {
-          console.error('Error fetching patient details:', error);
+          if (error.status === 404) {
+            this.router.navigate(['/not-found']);
+            this.patientDetails = null;
+          } else {
+            console.error('Error fetching patient details:', error);
+          }
         }
       );
     }
+  }
+
+  goToAppointments() {
+    this.router.navigate(['/dashboard/patients/appointments'], {
+      state: { patientId: this.patientId },
+    });
   }
 }

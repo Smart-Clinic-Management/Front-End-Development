@@ -1,34 +1,58 @@
 <h5 class="card-title">Specializations List</h5>
-<div class="table-responsive">
-  <table class="table table-striped table-bordered">
-    <thead>
-      <tr>
-        <th>No</th>
-        <th>Image</th>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      @for (specialization of specializations; track specialization.id) {
+
+@if (isLoading) {
+  <div class="text-center p-5">
+    <strong>Loading...</strong>
+  </div>
+} @else {
+  <div *ngIf="successMsg" class="alert alert-success">
+    {{ successMsg }}
+  </div>
+  <div *ngIf="errorMsg" class="alert alert-danger">
+    {{ errorMsg }}
+  </div>
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered">
+      <thead>
         <tr>
-          <td>{{ specializations.indexOf(specialization) + 1 }}</td>
-          <td>
-            @if(specialization.image !== null){
-              <img [src]="specialization.image" alt="specialization image" width="90" />
-            }
-          </td>
-          <td>{{ specialization.name }}</td>
-          <td>{{ specialization.description }}</td>
-          <td>
-            <a [routerLink]="['/dashboard/specializations/details', specialization.id]" class="btn btn-primary">details</a>
-            <a [routerLink]="['/dashboard/specializations/edit', specialization.id]" class="btn btn-success ms-1">edit</a>
-            <button class="btn btn-danger ms-1" (click)="confirmDelete(specialization.id)">delete</button>
-          </td>
+          <th>No</th>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Actions</th>
         </tr>
+      </thead>
+      <tbody>
+        @for (specialization of specializations.data; track specialization.id) {
+          <tr>
+            <td>{{ specializations.data.indexOf(specialization) + 1 + (currentPageIndex - 1) * 5 }}</td>
+            <td>
+              @if (specialization.image) {
+                <img [src]="specialization.image" alt="specialization image" width="90" />
+              }
+            </td>
+            <td>{{ specialization.name }}</td>
+            <td>
+              <a [routerLink]="['/dashboard/specializations/details', specialization.id]" class="btn btn-primary">details</a>
+              <a [routerLink]="['/dashboard/specializations/edit', specialization.id]" class="btn btn-success ms-1">edit</a>
+              <button class="btn btn-danger ms-1" (click)="confirmDelete(specialization.id)">delete</button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  @if (specializations.totalPages > 1) {
+    <div class="d-flex justify-content-center mt-3">
+      @for (page of [].constructor(specializations.totalPages); track $index) {
+        <button
+          class="btn btn-sm btn-outline-primary mx-1"
+          [ngClass]="{ 'active': currentPageIndex === $index + 1 }"
+          (click)="NextPage($index + 1)">
+          {{ $index + 1 }}
+        </button>
       }
-    </tbody>
-  </table>
-</div>
+    </div>
+  }
+}
 

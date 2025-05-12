@@ -1,38 +1,67 @@
-import { Component } from '@angular/core';
-import { IPatientAppointment } from '../../../../_interfaces/IPatientAppointment';
-import { AppointmentService } from '../../../../_services/Appointment.service';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { DashboardAppointmentService } from '../../../../_services/dashboard-appointment.service';
+import { ActivatedRoute, Router, RouterLink} from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { PaginationResponse } from '../../../../_interfaces/response/PaginationResponse';
 
 @Component({
   selector: 'app-dashboard-patient-appointment',
-  imports: [RouterLink,CommonModule],
+  imports: [CommonModule,RouterLink],
   templateUrl: './dashboard-patient-appointment.component.html',
   styleUrl: './dashboard-patient-appointment.component.css'
 })
 export class DashboardPatientAppointmentComponent {
   patientId: number | null = null;
-  patientAppointments: any[] = [];
-  constructor(private appointmentService: AppointmentService,private route: ActivatedRoute) { }
+  patientAppointments!: PaginationResponse<any>;
+  router = inject(Router);
+  isLoading = true;
+  currentPageIndex = 1;
+
+  constructor(private appointmentService: DashboardAppointmentService,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      const idParam = params.get('id');
-      if (idParam) {
-        this.patientId = +idParam;
-        this.loadPatientAppointments(this.patientId);
+    this.patientId = history.state.patientId || null;
+    console.log("doctorId from state", this.patientId);
+    this.route.queryParams.subscribe(params => {
+      this.currentPageIndex = +params['Page'] || 1;
+      this.loadPatientAppointments();
+    });
+  }
+
+  loadPatientAppointments() {
+    console.log("id",this.patientId);
+    this.isLoading = true;
+    this.appointmentService.getAllP(5, this.currentPageIndex,this.patientId).subscribe({
+      next: (response) => {
+        this.patientAppointments = response.data;
+        this.isLoading = false;
+        console.log("jkj",this.patientAppointments.data);
+      },
+      error: (err) => {
+        console.error('Error fetching specializations:', err);
+        this.isLoading = false;
       }
     });
   }
-  loadPatientAppointments(id: number) {
-    this.appointmentService.GetPatientAppointmentD(id).subscribe(
-      (data) => {
-        this.patientAppointments = data?.data ?? [];
-        console.log('Patients:', this.patientAppointments);
-      },
-      (error) => {
-        console.error('Error fetching patients:', error);
-      }
-    );
+  NextPage(pageIndex: number) {
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { Page: pageIndex },
+      queryParamsHandling: 'merge'
+    });
   }
+
+//   loadPatientAppointments(id: number) {
+//     this.appointmentService.GetPatientAppointmentD(id).subscribe(
+//       (data) => {
+//         this.patientAppointments = data?.data ?? [];
+//         console.log('Patients:', this.patientAppointments);
+//       },
+//       (error) => {
+//         console.error('Error fetching patients:', error);
+//       }
+//     );
+//   }
+// }
 }
+

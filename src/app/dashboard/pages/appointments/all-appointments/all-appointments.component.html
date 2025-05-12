@@ -1,1 +1,48 @@
-
+<h5 class="card-title">Appointments List</h5>
+<div class="table-responsive">
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Patient Name</th>
+        <th>Date</th>
+        <th>Start</th>
+        <th>End</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (appointment of doctorAppointments.data; track appointment.id) {
+        <tr>
+          <td>{{ doctorAppointments.data.indexOf(appointment) + 1 }}</td>
+          <td><a [routerLink]="['/dashboard/patients', appointment.patientId]">{{ appointment.patientFullName }}</a></td>
+          <td>{{ appointment.appointmentDate }}</td>
+          <td>{{ appointment.startTime }}</td>
+          <td>{{ appointment.endTime }}</td>
+          <td>
+            <span class="btn"
+                  [ngClass]="{
+                    'btn-warning': appointment.status === 'Pending',
+                    'btn-success': appointment.status === 'Complete',
+                    'btn-danger': appointment.status === 'Canceled'
+                  }">
+              {{ appointment.status }}
+            </span>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+@if (doctorAppointments.totalPages > 1) {
+  <div class="d-flex justify-content-center mt-3">
+    @for (page of [].constructor(doctorAppointments.totalPages); track $index) {
+      <button
+        class="btn btn-sm btn-outline-primary mx-1"
+        [ngClass]="{ 'active': currentPageIndex === $index + 1 }"
+        (click)="NextPage($index + 1)">
+        {{ $index + 1 }}
+      </button>
+    }
+  </div>
+}

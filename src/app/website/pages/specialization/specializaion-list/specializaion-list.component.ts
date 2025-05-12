@@ -27,7 +27,6 @@ export class SpecializaionListComponent {
     this.ActivatedRoute.queryParams.subscribe( params => {
       this.currentPageIndex = params['Page'] || 1 ;
       this.loadSpecializations();
-
     } )
   }
 
@@ -39,8 +38,8 @@ export class SpecializaionListComponent {
       (data) => {
         this.specializations = data.data;
         setTimeout(() => {
-          this.isLoading = false; 
-          
+          this.isLoading = false;
+
         }, 1000);
       },
       (error) => {
@@ -50,12 +49,12 @@ export class SpecializaionListComponent {
   }
 
   NextPage(pageIndex:number){
-    
+
     this.Route.navigate([],{
       relativeTo : this.ActivatedRoute ,
       queryParams:{
         Page: pageIndex
-      }, 
+      },
       queryParamsHandling:'merge'
     })
 

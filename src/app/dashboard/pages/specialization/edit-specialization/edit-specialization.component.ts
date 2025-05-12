@@ -13,8 +13,9 @@ import { CommonModule } from '@angular/common';
 export class EditSpecializationComponent {
   specializationForm!: FormGroup;
   submitted = false;
+  selectedFile!: File;
   successMsg = '';
-  selectedFile: File | null = null;
+  serverErrors: string[] = [];
   specializationId!: number;
 
   constructor(
@@ -27,31 +28,37 @@ export class EditSpecializationComponent {
   ngOnInit(): void {
     this.specializationId = +this.route.snapshot.paramMap.get('id')!;
     this.specializationForm = this.fb.group({
-      name: ['', Validators.required],
-      description: ['', Validators.required],
+      name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+      description: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(200)]],
       image: [null]
     });
 
-    this.specializationService.getSpecializationDetails(this.specializationId).subscribe({
-      next: (res) => {
-        const specialization = res.data;
-        this.specializationForm.patchValue({
-          name: specialization.name,
-          description: specialization.description
-        });
-      },
-      error: (err) => console.error(err)
-    });
+    this.loadSpecialization();
   }
 
   get f() {
     return this.specializationForm.controls;
   }
 
+  loadSpecialization() {
+    this.specializationService.getSpecializationDetails(this.specializationId).subscribe({
+      next: (data) => {
+        this.specializationForm.patchValue({
+          name: data.data.name,
+          description: data.data.description
+        });
+      },
+      error: (err) => {
+        console.error('Error loading specialization:', err);
+      }
+    });
+  }
+
   onFileChange(event: any) {
     const file = event.target.files[0];
     if (file) {
       this.selectedFile = file;
+      this.specializationForm.patchValue({ image: file });
     }
   }
 
@@ -69,9 +76,19 @@ export class EditSpecializationComponent {
     this.specializationService.updateSpecialization(this.specializationId, formData).subscribe({
       next: () => {
         this.successMsg = 'Specialization updated successfully';
-        this.router.navigate(['/dashboard/specializations']);
+        this.serverErrors = [];
+        this.submitted = false;
       },
-      error: (err) => console.error(err)
+      error: (err) => {
+        this.serverErrors = [];
+        if (err.error && err.error.errors) {
+          for (const key in err.error.errors) {
+            this.serverErrors.push(...err.error.errors[key]);
+          }
+        } else {
+          this.serverErrors.push('Something went wrong.');
+        }
+      }
     });
   }
 }

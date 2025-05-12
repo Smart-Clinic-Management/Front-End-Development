@@ -11,22 +11,17 @@ import { CommonModule } from '@angular/common';
   styleUrl: './add-specialization.component.css'
 })
 export class AddSpecializationComponent {
-  specializationForm!: FormGroup;
+  specializationForm: FormGroup;
   submitted = false;
-  selectedFile!: File;
+  serverErrors: string[] = [];
   successMsg = '';
+  selectedFile: File | null = null;
 
-  constructor(
-    private fb: FormBuilder,
-    private specializationService: SpecializationService,
-    private router: Router
-  ) {}
-
-  ngOnInit(): void {
+  constructor(private fb: FormBuilder, private service: SpecializationService) {
     this.specializationForm = this.fb.group({
-      name: ['', Validators.required],
-      description: ['', Validators.required],
-      image: [null]
+      name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+      description: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(200)]],
+      image: [null, Validators.required],
     });
   }
 
@@ -34,34 +29,64 @@ export class AddSpecializationComponent {
     return this.specializationForm.controls;
   }
 
-  onFileChange(event: any) {
-    const file = event.target.files[0];
-    if (file) {
+  onFileChange(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      const file = input.files[0];
+
+      const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+      const maxSize = 2 * 1024 * 1024; // 2MB
+
+      if (!allowedTypes.includes(file.type)) {
+        this.f['image'].setErrors({ invalidType: true });
+        this.selectedFile = null;
+        return;
+      }
+
+      if (file.size > maxSize) {
+        this.f['image'].setErrors({ maxSizeExceeded: true });
+        this.selectedFile = null;
+        return;
+      }
+
       this.selectedFile = file;
-      this.specializationForm.patchValue({ image: file });
+      this.f['image'].setErrors(null);
     }
   }
 
   onSubmit() {
     this.submitted = true;
-    if (this.specializationForm.invalid) return;
+    this.serverErrors = [];
+    this.successMsg = '';
+
+    if (this.specializationForm.invalid || !this.selectedFile) {
+      if (!this.selectedFile) {
+        this.serverErrors.push('Image is required.');
+      }
+      return;
+    }
 
     const formData = new FormData();
     formData.append('name', this.specializationForm.value.name);
     formData.append('description', this.specializationForm.value.description);
-    if (this.selectedFile) {
-      formData.append('image', this.selectedFile);
-    }
+    formData.append('image', this.selectedFile);
 
-    this.specializationService.createSpecialization(formData).subscribe({
+    this.service.createSpecialization(formData).subscribe({
       next: () => {
-        this.successMsg = 'Specialization added successfully';
+        this.successMsg = 'Added successfully';
         this.specializationForm.reset();
+        this.selectedFile = null;
         this.submitted = false;
       },
       error: (err) => {
-        console.error('Error creating specialization:', err);
-      }
+        if (err.error?.errors && Array.isArray(err.error.errors)) {
+          this.serverErrors = err.error.errors;
+        } else if (typeof err.error === 'string') {
+          this.serverErrors.push(err.error);
+        } else {
+          this.serverErrors.push('Something went wrong.');
+        }
+      },
     });
   }
 }

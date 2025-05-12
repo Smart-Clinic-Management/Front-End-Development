@@ -1,18 +1,24 @@
+export interface ISchedule {
+  scheduleId: number;
+  dayNumber: number;
+  day: string;
+  startTime: string;
+  endTime: string;
+  slotDuration: number;
+}
+
 export interface IDoctorDetails {
-  fname: any;
-  lname: any;
-  email: any;
-  birthDate: any;
-  specializationId: any;
   firstName: string;
   lastName: string;
   userEmail: string;
-  userPhoneNumber: string;
+  phoneNumber: string | null;
   age: number;
+  birthdate: string;
   address: string;
-  description: string;
+  description: string | null;
   waitingTime: number;
   image: string | null;
-  slotDuration: number | null;
+  specializationId: number;
   specialization: string;
+  schedule?: ISchedule[];
 }
