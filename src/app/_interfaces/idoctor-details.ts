@@ -21,4 +21,5 @@ export interface IDoctorDetails {
   specializationId: number;
   specialization: string;
   schedule?: ISchedule[];
+  slotDuration: number | null;
 }
