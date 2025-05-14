@@ -1,0 +1,115 @@
+/* تحسين شكل الهيدر */
+.chat-header {
+  background: linear-gradient(to right, #0181f5 0%, #5db2ff 100%);
+  color: whitesmoke;
+  padding: 20px 30px;
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px 10px 0 0;
+  width: 75%; /* يجعل الهيدر يناسب 75% من عرض الصفحة */
+  margin: 0 auto; /* يجعل الهيدر في المنتصف */
+}
+
+/* تحسين تنسيق الـ Chat Container */
+.chat-container {
+  width: 75%; /* الشات سيكون 75% من العرض */
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  height: 75vh; /* الشات سيأخذ 75% من ارتفاع الصفحة */
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+  font-family: 'Roboto', sans-serif;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+/* تصميم منطقة الرسائل */
+.chat-messages {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  background-color: #f7f7f7;
+  border-bottom: 1px solid #ddd;
+}
+
+/* تنسيق الرسائل */
+.chat-message {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.chat-message.user {
+  justify-content: flex-end;
+}
+
+.chat-message.bot {
+  justify-content: flex-start;
+}
+
+.message-content {
+  max-width: 70%;
+  padding: 1rem;
+  border-radius: 20px;
+  background-color: #e0e0e0;
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+.chat-message.user .message-content {
+  background-color: #0181f5;
+  color: white;
+  border-radius: 20px 0 0 20px;
+}
+
+.chat-message.bot .message-content {
+  background-color: #d2d2d2;
+  color: #333;
+  border-radius: 0 20px 20px 0;
+}
+
+/* تصميم المدخل (Input) */
+.chat-input {
+  display: flex;
+  padding: 1rem;
+  border-top: 1px solid #ddd;
+  background-color: #fff;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 0.75rem;
+  border-radius: 25px;
+  border: 2px solid #5db2ff;
+  margin-right: 0.75rem;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.chat-input input:focus {
+  border-color: #0181f5;
+}
+
+.chat-input button {
+  padding: 0.75rem 1.25rem;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.chat-input button:hover {
+  background-color: #0056b3;
+}
+
+/* إضافة تأثيرات عند التفاعل مع المدخل */
+.chat-input input:focus,
+.chat-input button:active {
+  transform: scale(1.05);
+}

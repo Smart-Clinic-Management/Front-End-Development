@@ -35,6 +35,7 @@ import { DashboardDoctorAppointmentComponent } from './dashboard/pages/doctor/da
 import { CreateScheduleComponent } from './dashboard/pages/schedule/create-schedule/create-schedule.component';
 import { AboutComponent } from './website/pages/about/about.component';
 import { ContactComponent } from './website/pages/contact/contact.component';
+import { ChatbotComponent } from './website/pages/chatbot/chatbot.component';
 
 export const routes: Routes = [
   {
@@ -48,6 +49,7 @@ export const routes: Routes = [
       { path: 'doctor/:id', component: DoctordetailsComponent },
       { path: 'specializaions', component: SpecializaionListComponent },
       { path: 'specializaion/doctors/:id', component: SpecializationDoctorsComponent },
+      { path: 'chatbot', component:ChatbotComponent },
       {
         path: 'doctorProfile',
         component: DoctorProfileComponent,
@@ -94,7 +96,7 @@ export const routes: Routes = [
       { path: 'patients', component: AllPatientsComponent },
       { path: 'patients/appointments', component: DashboardPatientAppointmentComponent },
       { path: 'patients/:id', component: PatientDetailsComponent },
-      { path: 'appointments', component: AllAppointmentsComponent }
+      { path: 'appointments', component: AllAppointmentsComponent },
     ],
   },
   { path: 'not-found', component: NotfoundComponent },
