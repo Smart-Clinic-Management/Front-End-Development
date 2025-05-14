@@ -1,0 +1,25 @@
+<div class="chat-header">
+  🤖 Smart Assistant
+</div>
+<div class="chat-container">
+  <div class="chat-messages">
+    <div *ngFor="let message of messages" class="chat-message" [class.user]="message.sender === 'user'" [class.bot]="message.sender === 'bot'">
+      <div class="message-content">
+        {{ message.content }}
+      </div>
+    </div>
+  </div>
+
+  <div class="chat-input">
+    <!-- إضافة id و name لحقل الإدخال -->
+    <input 
+      [value]="userInput || ''" 
+      (input)="onInputChange($event)" 
+      type="text" 
+      id="userInputField" 
+      name="userInput" 
+      placeholder="Ask us..." 
+    />
+    <button (click)="sendMessage()">Send</button>
+  </div>
+</div>
